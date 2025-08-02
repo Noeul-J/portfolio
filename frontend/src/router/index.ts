@@ -1,17 +1,16 @@
-import {createRouter, createWebHistory} from 'vue-router'
-import type {RouteRecordRaw} from 'vue-router'
-import LoginView from '../views/LoginView.vue'
-import InboxView from '../views/InboxView.vue'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
+import LoginView from '@/views/LoginView.vue'
 
-const routes: RouteRecordRaw[] =[
-    {path: '/', redirect: '/login'},
-    {path: '/login', component: LoginView},   
-    {path: '/inbox', component: InboxView},
+const routes: RouteRecordRaw[] = [
+  { path: '/', redirect: '/home' },
+  { path: '/home', name: 'Home', component: HomeView },
+  { path: '/login', name: 'Login', component: LoginView }
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+  history: createWebHistory(),
+  routes
 })
 
-export default router;
+export default router

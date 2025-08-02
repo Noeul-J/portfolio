@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 text-gray-900 font-sans">
-    <RouterView />
+  <div class="min-h-screen bg-[#0d1117] text-white">
+    <router-view />
   </div>
 </template>

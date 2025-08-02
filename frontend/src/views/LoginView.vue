@@ -2,14 +2,16 @@
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
-import api from '@/axios'
+// 위에 추가
+// @ts-ignore
+import instance from '@/axios'
 import { onMounted, ref } from 'vue'
 
 const message = ref('')
 
 onMounted(async () => {
   try{
-    const response = await api.get('/api/test')
+    const response = await instance.get('/api/test')
     message.value = response.data.message
   } catch (error) {
     console.error('API 호출 오류:', error)
