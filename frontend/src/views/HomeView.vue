@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Header from '../components/Header.vue'
-import TechStack from '../components/TechStack.vue'
+import SkillSet from '../components/SkillSet.vue'
 import ProjectSummary from '../components/ProjectSummary.vue'
 import Introduce from '../components/Introduce.vue'
 import Footer from '../components/Footer.vue'
@@ -8,20 +8,24 @@ import Footer from '../components/Footer.vue'
 </script>
 
 <template>
-  <div>
+  <div class="min-h-screen flex flex-col">
     <Header />
-    
-    <div class="max-w-8xl mx-auto px-6 py-16">
-    <Introduce />
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <!-- Left Column: TechStack -->
-        <div class="lg:col-span-1 space-y-20">
-          <TechStack />
-        </div>
-        
-        <!-- Right Column: ProjectSummary -->
-        <div class="lg:col-span-2">
-          <ProjectSummary />
+  
+    <div class="flex items-center justify-center">
+      <div class="w-full max-w-8xl mx-auto px-50 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Left Column: SkillSet -->
+          <div>
+            <Introduce />
+          </div>
+          <div class="lg:col-span-1">
+            <SkillSet />
+          </div>
+          
+          <!-- Right Column: ProjectSummary -->
+          <div class="lg:col-span-2">
+            <ProjectSummary />
+          </div>
         </div>
       </div>
     </div>

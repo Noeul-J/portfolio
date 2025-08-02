@@ -1,5 +1,5 @@
 <template>
-  <footer id="contact" class="text-center py-8 bg-[#161b22] border-t border-[#30363d]">
+  <footer id="footer" class="text-center py-8 bg-[#161b22] border-t border-[#30363d]">
     <div class="container mx-auto px-6">
       <p class="text-[#8b949e] text-sm">
         &copy; 2025 HyeongJu Jung. All rights reserved.
