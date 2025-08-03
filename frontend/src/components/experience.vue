@@ -26,12 +26,12 @@ const particlesOptions = {
       <p class="text-lg text-[#58a6ff] mb-6">
         A Full-Stack Developer & RPA Specialist
       </p>
-      <div>2025 ~ </div>
-      <div class="text-lg text-[#8b949e] mb-6">Full-Stack Developer</div>
-      <div>2023 ~ 2024</div>
-      <div class="text-lg text-[#8b949e] mb-6">Team Leader & RPA Senior developer</div>
-      <div>2019 ~ 2022</div>
-      <div class="text-lg text-[#8b949e] mb-6">RPA developer</div>
+      <div>2025.01 ~  </div>
+      <div class="text-lg text-[#8b949e] mb-6">(EDENTNS) Full-Stack Developer</div>
+      <div>2023.01 ~ 2024.12</div>
+      <div class="text-lg text-[#8b949e] mb-6">(EDENTNS) Team Leader & RPA Senior developer</div>
+      <div>2019.06 ~ 2022.12</div>
+      <div class="text-lg text-[#8b949e] mb-6">(EDENTNS) RPA developer</div>
     </div>
   </section>
 </template>

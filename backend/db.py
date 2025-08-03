@@ -5,16 +5,20 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# PostgreSQL 연결 (기본값 설정)
-DB_USER = os.getenv('DB_USER', 'postgres')
-DB_PASSWORD = os.getenv('DB_PASSWORD', 'password')
-DB_HOST = os.getenv('DB_HOST', 'localhost')
-DB_PORT = os.getenv('DB_PORT', '5432')
-DB_NAME = os.getenv('DB_NAME', 'mini_mail')
+# # PostgreSQL 연결 (기본값 설정)
+# DB_USER = os.getenv('DB_USER', 'postgres')
+# DB_PASSWORD = os.getenv('DB_PASSWORD', 'password')
+# DB_HOST = os.getenv('DB_HOST', 'localhost')
+# DB_PORT = os.getenv('DB_PORT', '5432')
+# DB_NAME = os.getenv('DB_NAME', 'mini_mail')
 
-DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+# DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-engine = create_engine(DB_URL, echo=True)
+# 임시로 SQLite 사용 (PostgreSQL 설정 전까지)
+DB_URL = "sqlite:///./test.db"
+
+# engine = create_engine(DB_URL, echo=True)
+engine = create_engine(DB_URL, echo=True, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
