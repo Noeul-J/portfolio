@@ -1,6 +1,6 @@
 <template>
   <section class="bg-[#161b22] rounded-xl border-[#30363d] p-4 max-w-4xl mx-auto">
-    <h2 class="text-2xl font-bold text-white mb-6 text-center">Skills and Techniques</h2>
+    <h2 class="text-2xl font-bold text-white mb-6 text-left">Skills and Techniques</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Frontend -->
         <div class="bg-[#21262d] p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
@@ -15,7 +15,7 @@
                     <path fill="#35495E" d="M19.75 7 50 59 80 7H61.5L50 27 38.25 7z"/>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">Vue.js</span>
+                <span class="text-[#c9d1d9]">Vue.js</span> 
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
