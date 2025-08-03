@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Header from '../components/Header.vue'
+import About from '../components/about.vue'
 import SkillSet from '../components/SkillSet.vue'
 import ProjectSummary from '../components/ProjectSummary.vue'
-import Introduce from '../components/Introduce.vue'
 import Footer from '../components/Footer.vue'
 import { ref } from 'vue'
+import Experience from '../components/experience.vue'
 
 const activeMenu = ref('About')
 
@@ -52,30 +52,21 @@ const showComponent = (menu: string) => {
 
         <!-- Content Area -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <!-- Left Column: Introduce -->
+          <!-- Left Column: Experience -->
           <div class="lg:col-span-1">
-            <Introduce />
+            <Experience />
           </div>
           
           <!-- Right Column: Dynamic Content -->
           <div class="lg:col-span-2">
-            <div v-if="activeMenu === 'About'" class="bg-[#161b22] rounded-xl border-[#30363d] p-6">
-              <h2 class="text-2xl font-bold text-white mb-4">About Me</h2>
-              <p class="text-[#c9d1d9] leading-relaxed">
-                안녕하세요! 저는 풀스택 개발자이자 RPA 전문가입니다. 
-                새로운 기술을 배우는 것을 좋아하며, 실용적인 솔루션을 만드는 데 열정을 가지고 있습니다.
-                팀워크를 통해 의미 있는 프로젝트를 완성하는 것을 즐기며, 
-                지속적인 성장과 혁신을 추구합니다.
-              </p>
-            </div>
+            <!-- About Section -->
+            <About v-if="activeMenu === 'About'" />
             
-            <div v-else-if="activeMenu === 'Skill'">
-              <SkillSet />
-            </div>
+            <!-- Skills Section -->
+            <SkillSet v-else-if="activeMenu === 'Skill'" />
             
-            <div v-else-if="activeMenu === 'Project'">
-              <ProjectSummary />
-            </div>
+            <!-- Projects Section -->
+            <ProjectSummary v-else-if="activeMenu === 'Project'" />
           </div>
         </div>
         
