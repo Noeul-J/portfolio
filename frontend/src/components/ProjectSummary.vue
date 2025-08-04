@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import ProjectModal from './ProjectModal.vue';
 
 const selectedProject = ref<Project | null>(null);
@@ -33,7 +33,7 @@ const contents: Project[] = [
   },
   {
     title: "Worktro UI Improvement",
-    category: "UI/UX",
+    category: "Web",
     period: "2025.01 - 2025.05",
     description: "Worktro UI Improvement based on Vue2 -> Vue3 Migration",
     technologies: ["Vue.js", "typescript", "Java"]
@@ -109,36 +109,72 @@ const contents: Project[] = [
     technologies: ["WinAutomation", "vba", "Core Insurance System", "python"]
   }
 ]
+
+// 년도별로 프로젝트 그룹화
+const groupedProjects = computed(() => {
+  const groups: { [key: string]: Project[] } = {};
+  
+  contents.forEach(project => {
+    const year = project.period.split('.')[0]; // "2025.08 - Present"에서 "2025" 추출
+    if (!groups[year]) {
+      groups[year] = [];
+    }
+    groups[year].push(project);
+  });
+  
+  // 년도별로 정렬 (최신순)
+  return Object.entries(groups)
+    .sort(([a], [b]) => parseInt(b) - parseInt(a))
+    .map(([year, projects]) => ({
+      year,
+      projects: projects.sort((a, b) => {
+        // 같은 년도 내에서는 시작 월로 정렬
+        const aMonth = parseInt(a.period.split('.')[1]);
+        const bMonth = parseInt(b.period.split('.')[1]);
+        return bMonth - aMonth;
+      })
+    }));
+});
 </script>
 
 <template>
-  <section class="p-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div 
-        v-for="content in contents" 
-        :key="content.title"
-        class="bg-[#21262d] p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors hover:shadow-lg hover:shadow-[#58a6ff]/20"
-        @click="openModal(content)"      
-      >
-        <div class="flex items-start justify-between mb-6">
-          <div class="flex-1">
-            <h3 class="text-base font-semibold text-white mb-1 line-clamp-2">{{ content.title }}</h3>
-            <span class="text-[#8b949e] text-xs">{{ content.period }}</span>
+  <section class="max-w-4xl relative">
+    <div class="text-left pt-2">
+      <div class="space-y-10">
+        <div v-for="(group, groupIndex) in groupedProjects" :key="group.year" class="flex items-start">
+          <div class="flex-shrink-0 w-24 text-sm text-[#8b949e] font-medium">{{ group.year }}</div>
+          <div class="flex-1 ml-4 relative">
+            <div class="absolute left-0 top-2 w-2 h-2 bg-[#93c5fd] rounded-full"></div>
+            <div v-if="groupIndex < groupedProjects.length - 1" 
+                 class="absolute left-1 top-6 w-0.5 bg-gradient-to-b from-[#93c5fd] to-transparent"
+                 :style="{ height: `${(group.projects.length * 120) + 40}px` }"></div>
+            <div class="ml-6 space-y-6">
+              <div v-for="(project, projectIndex) in group.projects" :key="project.title" 
+                   class="cursor-pointer hover:bg-[#161b22] p-4 rounded-lg transition-colors duration-200"
+                   @click="openModal(project)">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex-1">
+                    <h3 class="text-lg font-bold text-white mb-1 hover:text-[#93c5fd] transition-colors">{{ project.title }}</h3>
+                    <span class="text-[#8b949e] text-sm">{{ project.period }}</span>
+                  </div>
+                  <span class="bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] text-white px-3 py-1 rounded-full text-xs ml-2 flex-shrink-0 font-medium">{{ project.category }}</span>
+                </div>
+                <p class="text-[#c9d1d9] text-sm mb-3 leading-relaxed">{{ project.description }}</p>
+                <div class="flex gap-2 flex-wrap">
+                  <span 
+                    v-for="tech in project.technologies.slice(0, 4)" 
+                    :key="tech"
+                    class="bg-[#161b22] text-[#93c5fd] px-2 py-1 rounded text-xs border border-[#30363d]"
+                  >
+                    {{ tech }}
+                  </span>
+                  <span v-if="project.technologies.length > 4" class="text-[#8b949e] text-xs px-1 py-1">
+                    +{{ project.technologies.length - 4 }}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <span class="bg-[#161b22] text-[#8b949e] px-2 py-1 rounded-full text-xs ml-2 flex-shrink-0">{{ content.category }}</span>
-        </div>
-        <p class="text-[#8b949e] text-xs mb-5 line-clamp-3">{{ content.description }}</p>
-        <div class="flex gap-1 flex-wrap">
-          <span 
-            v-for="tech in content.technologies.slice(0, 5)" 
-            :key="tech"
-            class="bg-[#161b22] text-[#c9d1d9] px-2 py-1 rounded text-xs"
-          >
-            {{ tech }}
-          </span>
-          <span v-if="content.technologies.length > 5" class="text-[#8b949e] text-xs px-1 py-1">
-            +{{ content.technologies.length - 5 }}
-          </span>
         </div>
       </div>
     </div>
