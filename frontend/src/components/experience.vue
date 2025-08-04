@@ -1,13 +1,4 @@
 <script setup lang="ts">
-const particlesOptions = {
-  background: { color: '#0d1117' },
-  particles: {
-    number: { value: 60 },
-    size: { value: 2 },
-    move: { enable: true, speed: 1 },
-    opacity: { value: 0.5 }
-  }
-}
 
 </script>
 

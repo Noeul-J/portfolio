@@ -58,7 +58,7 @@ const showComponent = (menu: string) => {
           </div>
           
           <!-- Right Column: Dynamic Content -->
-          <div class="lg:col-span-2">
+          <div class="lg:col-span-2 h-[600px] overflow-y-auto custom-scrollbar">
             <!-- About Section -->
             <About v-if="activeMenu === 'About'" />
             
@@ -76,3 +76,39 @@ const showComponent = (menu: string) => {
     <Footer />
   </div>
 </template>
+
+<style scoped>
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #1e293b;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+/* 스크롤바가 나타날 때 부드러운 애니메이션 */
+.custom-scrollbar {
+  transition: all 0.3s ease;
+}
+
+/* 스크롤바가 숨겨져 있을 때는 더 얇게 */
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+}
+</style>
