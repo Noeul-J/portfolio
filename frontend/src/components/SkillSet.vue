@@ -1,11 +1,10 @@
 <template>
-  <section class="bg-[#161b22] rounded-xl border-[#30363d] p-4 max-w-4xl mx-auto">
-    <h2 class="text-2xl font-bold text-white mb-6 text-left">Skills and Techniques</h2>
+  <section class="p-4 max-w-4xl">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Frontend -->
-        <div class="bg-[#21262d] p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
+                 <!-- Frontend -->
+         <div class="p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
           <div class="space-y-4">
-            <h3 class="text-lg font-semibold text-white mb-4 text-center">Frontend</h3>
+            <h3 class="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold mb-4 text-center">Frontend</h3>
             <div class="space-y-4">
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -38,10 +37,10 @@
           </div>
         </div>
 
-        <!-- Backend -->
-        <div class="bg-[#21262d] p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
+                 <!-- Backend -->
+         <div class="p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
           <div class="space-y-4">
-            <h3 class="text-lg font-semibold text-white mb-4 text-center">Backend</h3>
+            <h3 class="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold mb-4 text-center">Backend</h3>
             <div class="space-y-4">
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -98,9 +97,9 @@
         </div>
 
         <!-- Tools -->
-         <div class="bg-[#21262d] p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
+         <div class="p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
           <div class="space-y-4">
-            <h3 class="text-lg font-semibold text-white mb-4 text-center">Tools</h3>
+            <h3 class="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold mb-4 text-center">Tools</h3>
             <div class="space-y-4">
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -144,7 +143,213 @@
               </div>
             </div>
           </div>
-        </div>
-    </div>
-  </section>
+                 </div>
+     </div>
+     
+           <!-- GitHub Contribution Graph -->
+      <div class="mt-12">
+        <h3 class="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold mb-6 text-center">GitHub Activity</h3>
+        <div class="flex justify-center">
+          <div class="bg-[#161b22] rounded-lg border border-[#30363d] p-6 w-full max-w-6xl">
+            <!-- 로딩 상태 -->
+            <div v-if="loading" class="flex justify-center items-center h-32">
+              <div class="text-[#8b949e]">GitHub 데이터를 불러오는 중...</div>
+            </div>
+            
+            <!-- 에러 상태 -->
+            <div v-else-if="error" class="flex justify-center items-center h-32">
+              <div class="text-red-400 text-center">
+                <div class="mb-2">데이터를 불러올 수 없습니다</div>
+                <div class="text-sm text-[#8b949e]">{{ error }}</div>
+              </div>
+            </div>
+            
+                                       <!-- 잔디표 -->
+              <div v-else>
+                <!-- 잔디표 그리드 -->
+                <div class="grid grid-cols-26 grid-rows-7 gap-1 w-full">
+                  <div v-for="(contribution, index) in contributionData" :key="index" 
+                       :class="getContributionClass(contribution.count)"
+                       class="w-4 h-4 rounded-sm transition-colors duration-200"
+                       :title="getContributionTooltip(contribution.date, contribution.count)">
+                  </div>
+                </div>
+              </div>
+                       <div class="flex items-center justify-center mt-4 space-x-4 text-xs text-[#8b949e]">
+              <span>Less</span>
+              <div class="flex space-x-1">
+                <div class="w-4 h-4 rounded-sm bg-[#0b0b23]"></div>
+                <div class="w-4 h-4 rounded-sm bg-[#1e3a8a]"></div>
+                <div class="w-4 h-4 rounded-sm bg-[#3b82f6]"></div>
+                <div class="w-4 h-4 rounded-sm bg-[#8b5cf6]"></div>
+                <div class="w-4 h-4 rounded-sm bg-[#ef4444]"></div>
+              </div>
+              <span>More</span>
+            </div>
+         </div>
+       </div>
+     </div>
+   </section>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+
+// GitHub 사용자명 (여기에 본인의 GitHub 사용자명을 입력하세요)
+const githubUsername = 'Noeul-J'
+
+// GitHub 잔디표 데이터
+const contributionData = ref<any[]>([])
+const loading = ref(true)
+const error = ref('')
+
+// 실제 GitHub GraphQL API를 사용하여 잔디표 데이터 가져오기
+const fetchGitHubContributions = async () => {
+  try {
+    loading.value = true
+    error.value = ''
+    
+    // GitHub GraphQL API 사용 (실제 잔디표 데이터)
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.VITE_GITHUB_TOKEN || ''}`,
+      },
+      body: JSON.stringify({
+        query: `
+          query {
+            user(login: "${githubUsername}") {
+              contributionsCollection {
+                contributionCalendar {
+                  totalContributions
+                  weeks {
+                    contributionDays {
+                      contributionCount
+                      date
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `
+      })
+    })
+
+    if (!response.ok) {
+      throw new Error('GitHub GraphQL API 요청 실패')
+    }
+
+    const data = await response.json()
+    
+    if (data.errors) {
+      throw new Error(data.errors[0].message)
+    }
+    
+    // 실제 잔디표 데이터 처리
+    const contributions = processContributionData(data.data.user.contributionsCollection.contributionCalendar)
+    contributionData.value = contributions
+    
+  } catch (err: any) {
+    console.error('GitHub 데이터 가져오기 실패:', err)
+    error.value = err.message || '데이터를 가져오는데 실패했습니다.'
+  } finally {
+    loading.value = false
+  }
+}
+
+// GitHub 잔디표 데이터 처리 (실제 Contribution Graph 데이터)
+const processContributionData = (contributionCalendar: any) => {
+  const contributions: any[] = []
+  
+  // 모든 주의 데이터를 평면화
+  contributionCalendar.weeks.forEach((week: any) => {
+    week.contributionDays.forEach((day: any) => {
+      contributions.push({
+        date: day.date,
+        count: day.contributionCount
+      })
+    })
+  })
+  
+  // 최근 6개월 데이터만 필터링
+  const now = new Date()
+  const sixMonthsAgo = new Date(now)
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6)
+  
+  const filteredContributions = contributions.filter(contribution => {
+    const contributionDate = new Date(contribution.date)
+    return contributionDate >= sixMonthsAgo
+  })
+  
+  // 7행 x 26열로 재구성 (GitHub 실제 구조와 동일하게)
+  const reorganizedContributions: any[] = []
+  const totalCells = 7 * 26 // 182개 셀
+  
+  // 6개월 데이터를 182개 셀로 맞추기 (최근 데이터가 오른쪽에 오도록)
+  const startIndex = Math.max(0, filteredContributions.length - totalCells)
+  const dataToUse = filteredContributions.slice(startIndex)
+  
+  // GitHub 실제 구조: 각 열은 한 주, 각 행은 요일
+  // 왼쪽에서 오른쪽으로 시간이 흐르고, 위에서 아래로 요일이 진행
+  for (let row = 0; row < 7; row++) {
+    for (let col = 0; col < 26; col++) {
+      const index = col * 7 + row
+      if (index < dataToUse.length) {
+        reorganizedContributions.push(dataToUse[index])
+      } else {
+        // 빈 셀 추가 (왼쪽에 빈 공간)
+        reorganizedContributions.push({
+          date: '',
+          count: 0
+        })
+      }
+    }
+  }
+  
+  return reorganizedContributions
+}
+
+// 우주 컨셉 색상 매핑 (네온 우주 테마)
+const getContributionClass = (count: number) => {
+  if (count === 0) return 'bg-[#aaa1a1]'
+  if (count <= 3) return 'bg-[#1e3a8a]'
+  if (count <= 6) return 'bg-[#3b82f6]'
+  if (count <= 9) return 'bg-[#8b5cf6]'
+  return 'bg-[#ef4444]'
+}
+
+const getContributionTooltip = (date: string, count: number | null) => {
+  const dateObj = new Date(date)
+  const formattedDate = dateObj.toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+  
+  if (count === null) {
+    return `${formattedDate}: 데이터 없음`
+  } else if (count === 0) {
+    return `${formattedDate}: 기여 없음`
+  } else if (count === 1) {
+    return `${formattedDate}: 1개의 기여`
+  } else {
+    return `${formattedDate}: ${count}개의 기여`
+  }
+}
+
+// 컴포넌트 마운트 시 실제 GitHub 데이터 가져오기
+onMounted(() => {
+  fetchGitHubContributions()
+})
+</script>
+
+<style scoped>
+.grid-cols-26 {
+  grid-template-columns: repeat(26, minmax(0, 1fr));
+}
+.grid-rows-7 {
+  grid-template-rows: repeat(7, minmax(0, 1fr));
+}
+</style>

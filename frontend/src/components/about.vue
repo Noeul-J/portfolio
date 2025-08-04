@@ -1,8 +1,5 @@
 <template>
-    <section class="bg-[#161b22] rounded-xl border-[#30363d] p-6 max-w-4xl mx-auto">
-        <div>
-            <h2 class="text-2xl font-bold text-white mb-8 text-left">About Me</h2>
-        </div>
+    <section class="max-w-4xl">
         <div class="space-y-6 text-[#c9d1d9] leading-relaxed">
             <p class="text-lg font-medium">I'm a developer who thrives at the intersection of logic and impact.</p>
             

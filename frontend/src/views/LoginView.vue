@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-const router = useRouter()
-
-// 위에 추가
-// @ts-ignore
 import instance from '@/axios'
 import { onMounted, ref } from 'vue'
+import router from '@/router'
 
 const message = ref('')
 

@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import ProjectModal from './ProjectModal.vue';
+
+const selectedProject = ref<Project | null>(null);
+
+const openModal = (project: Project) => {
+  selectedProject.value = project;
+};
+
 interface Project {
   title: string;
   category: string;
@@ -36,7 +45,7 @@ const contents: Project[] = [
     description: "Developed an automated system that classifies incoming documents, uses OCR to extract data, generates financial statements, and composes credit evaluation reports based on the results",
     technologies: ["Worktro", "Excel", "OCR"]
   },
-  {
+  { 
     title: "Monthly Sales Closing Journal Entries Automation",
     category: "RPA",
     period: "2024.01 - 2024.05",
@@ -103,14 +112,13 @@ const contents: Project[] = [
 </script>
 
 <template>
-  <section class="bg-[#161b22] rounded-xl border border-[#30363d] p-6">
-    <h2 class="text-2xl font-bold text-white mb-6">Projects</h2>
-     
+  <section class="p-6">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <div 
         v-for="content in contents" 
         :key="content.title"
         class="bg-[#21262d] p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors hover:shadow-lg hover:shadow-[#58a6ff]/20"
+        @click="openModal(content)"      
       >
         <div class="flex items-start justify-between mb-6">
           <div class="flex-1">
@@ -134,6 +142,11 @@ const contents: Project[] = [
         </div>
       </div>
     </div>
+    <ProjectModal 
+      v-if="selectedProject"
+      :project="selectedProject"
+      @close="selectedProject = null"
+    />
   </section>
 </template>
 
