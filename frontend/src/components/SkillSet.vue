@@ -178,10 +178,10 @@
                        <div class="flex items-center justify-center mt-4 space-x-4 text-xs text-[#8b949e]">
               <span>Less</span>
               <div class="flex space-x-1">
-                <div class="w-4 h-4 rounded-sm bg-[#0b0b23]"></div>
-                <div class="w-4 h-4 rounded-sm bg-[#1e3a8a]"></div>
-                <div class="w-4 h-4 rounded-sm bg-[#3b82f6]"></div>
-                <div class="w-4 h-4 rounded-sm bg-[#8b5cf6]"></div>
+                <div class="w-4 h-4 rounded-sm bg-[#aaa1a1]"></div>
+                <div class="w-4 h-4 rounded-sm bg-[#3b82f0]"></div>
+                <div class="w-4 h-4 rounded-sm bg-[#1f3a8c]"></div>
+                <div class="w-4 h-4 rounded-sm bg-[#8b5cf8]"></div>
                 <div class="w-4 h-4 rounded-sm bg-[#ef4444]"></div>
               </div>
               <span>More</span>
@@ -314,9 +314,9 @@ const processContributionData = (contributionCalendar: any) => {
 // 우주 컨셉 색상 매핑 (네온 우주 테마)
 const getContributionClass = (count: number) => {
   if (count === 0) return 'bg-[#aaa1a1]'
-  if (count <= 3) return 'bg-[#1e3a8a]'
-  if (count <= 6) return 'bg-[#3b82f6]'
-  if (count <= 9) return 'bg-[#8b5cf6]'
+  if (count <= 3) return 'bg-[#3b82f0]'
+  if (count <= 6) return 'bg-[#1f3a8c]' 
+  if (count <= 9) return 'bg-[#8b5cf8]'
   return 'bg-[#ef4444]'
 }
 

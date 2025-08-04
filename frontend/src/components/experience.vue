@@ -18,9 +18,9 @@
                   <span class="text-[#8b949e] ml-2">Full-Stack Developer</span>
                 </div>
                 <div class="mt-2 text-sm text-[#8b949e] leading-relaxed">
-                  • Vue.js, TypeScript, TailwindCSS를 활용한 웹 애플리케이션 개발<br>
-                  • RPA 솔루션과 웹 시스템 연동 및 API 개발<br>
-                  • 프론트엔드 성능 최적화 및 사용자 경험 개선
+                  • C# 기반의 RPA bot 기능 개선<br>
+                  • Vue.js, TypeScript를 활용한 웹페이지 개발<br>
+                  • Vue2에서 Vue3 마이그레이션 주도 및 UI/UX 개선
                 </div>
               </div>
            </div>
@@ -39,9 +39,9 @@
                 </div>
                 <div class="mt-2 text-sm text-[#8b949e] leading-relaxed">
                   • 5명 개발팀 리드 및 프로젝트 관리<br>
+                  • 팀 멤버 기술 교육 및 코드 리뷰 진행<br>
+                  • OCR 기술을 활용한 문서 자동화 및 신용평가 시스템 구축<br>
                   • 복잡한 업무 프로세스 자동화 설계 및 구현<br>
-                  • Vue2에서 Vue3 마이그레이션 주도 및 UI/UX 개선<br>
-                  • 팀 멤버 기술 교육 및 코드 리뷰 진행
                 </div>
               </div>
            </div>
@@ -60,7 +60,6 @@
                 <div class="mt-2 text-sm text-[#8b949e] leading-relaxed">
                   • Worktro, WinAutomation을 활용한 업무 자동화 개발<br>
                   • Excel, ERP, WMS 시스템 연동 및 데이터 처리<br>
-                  • OCR 기술을 활용한 문서 자동화 및 신용평가 시스템 구축<br>
                   • Python, VBA를 활용한 데이터 분석 및 보고서 자동 생성
                 </div>
               </div>
