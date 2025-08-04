@@ -70,7 +70,7 @@ const showComponent = (menu: string) => {
             </div>
             
             <!-- Content Area -->
-            <div class="h-[800px] overflow-y-auto custom-scrollbar">
+            <div class="h-[700px] overflow-y-auto custom-scrollbar">
               <!-- About Section -->
               <About v-if="activeMenu === 'About'" />
               
