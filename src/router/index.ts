@@ -3,9 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', redirect: '/home' },
-  { path: '/home', name: 'Home', component: HomeView },
-  { path: '/login', name: 'Login', component: LoginView }
+  { path: '/', component: HomeView, name: 'Home' },
 ]
 
 const router = createRouter({
