@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import ProjectModal from './ProjectModal.vue';
+import { useI18n } from 'vue-i18n';
 
 const selectedProject = ref<Project | null>(null);
+const { t } = useI18n()
+
 
 const openModal = (project: Project) => {
   selectedProject.value = project;
@@ -18,94 +21,94 @@ interface Project {
 
 const contents: Project[] = [
   {
-    title: "Portfolio",
+    title: t('portfolio'),
     category: "Web",
     period: "2025.08 - Present",
-    description: "Portfolio site based on Vue.js",
+    description: t('portfolioDescription'),
     technologies: ["Vue.js", "TypeScript", "TailwindCSS"]
   },
   {
-    title: "RPA Bot Improvement",
+    title: t('rpaBotImprovement'),
     category: "App",
     period: "2025.06 - Present",
-    description: "RPA Bot Improvement based on C#",
+    description: t('rpaBotImprovementDescription'),
     technologies: ["C#", "Javascript", "NativeMessage"]
   },
   {
-    title: "Worktro UI Improvement",
+    title: t('worktroUiImprovement'),
     category: "Web",
     period: "2025.01 - 2025.05",
-    description: "Worktro UI Improvement based on Vue2 -> Vue3 Migration",
+    description: t('worktroUiImprovementDescription'),
     technologies: ["Vue.js", "typescript", "Java"]
   },
   {
-    title: "Automated Credit Evaluation",
+    title: t('automatedCreditEvaluation'),
     category: "RPA",
     period: "2024.06 - 2024.12",
-    description: "Developed an automated system that classifies incoming documents, uses OCR to extract data, generates financial statements, and composes credit evaluation reports based on the results",
+    description: t('automatedCreditEvaluationDescription'),
     technologies: ["Worktro", "Excel", "OCR"]
   },
   { 
-    title: "Monthly Sales Closing Journal Entries Automation",
+    title: t('monthlySalesClosingJournalEntriesAutomation'),
     category: "RPA",
     period: "2024.01 - 2024.05",
-    description: "Automated the processing of monthly sales closing journal entries for both company-owned and franchise stores.",
+    description: t('monthlySalesClosingJournalEntriesAutomationDescription'),
     technologies: ["Worktro", "Excel", "ERP"]
   },
   {
-    title: "Seasonal inventory management automation",
+    title: t('seasonalInventoryManagementAutomation'),
     category: "RPA",
     period: "2023.08 - 2023.12",
-    description: "I automated the seasonal inventory management process by integrating and analyzing data on purchase orders, shipments, and related figures.",
+    description: t('seasonalInventoryManagementAutomationDescription'),
     technologies: ["Worktro", "Excel", "ERP", "WMS"]
   },
   {
-    title: "Comprehensive Income Tax Filing Automation",
+    title: t('comprehensiveIncomeTaxFilingAutomation'),
     category: "RPA",
     period: "2023.06 - 2023.07",
-    description: "Automated the end-to-end comprehensive income tax filing process at a tax firm, including data collection, report generation, and electronic submission via Hometax.",
+    description: t('comprehensiveIncomeTaxFilingAutomationDescription'),
     technologies: ["Worktro", "Excel", "ERP", "WMS"]
   },
   {
-    title: "Server maintenance automation",
+    title: t('serverMaintenanceAutomation'),
     category: "RPA",
     period: "2023.03 - 2023.05",
-    description: "Developed a system to automate routine Linux server diagnostics by using PuTTY for remote access and shell scripting.",
+    description: t('serverMaintenanceAutomationDescription'),
     technologies: ["Worktro", "PuTTY", "Shell Scripting"]
   },
   {
-    title: "Power Generation Tax Invoice Automation",
+    title: t('powerGenerationTaxInvoiceAutomation'),
     category: "RPA",
     period: "2022.10 - 2023.02",
-    description: "Developed a system to automatically issue tax invoices based on power generation from REC and SMP sources.",
+    description: t('powerGenerationTaxInvoiceAutomationDescription'),
     technologies: ["Worktro", "Excel", "Python"]
   },
   {
-    title: "COVID-19 Quarantine Notice Automation",
+    title: t('covid19QuarantineNoticeAutomation'),
     category: "RPA",
     period: "2022.07 - 2022.09",
-    description: "Automated the generation of COVID-19 quarantine notices and their delivery via SMS.",
+    description: t('covid19QuarantineNoticeAutomationDescription'),
     technologies: ["Worktro", "Excel", "Word", "SMS System"]
   },
   {
-    title: "Deposit and Accounting Journal Entry Automation",
+    title: t('depositAndAccountingJournalEntryAutomation'),
     category: "RPA",
     period: "2022.03 - 2022.06",
-    description: "Automated the creation of deposit and accounting journal entries.",
+    description: t('depositAndAccountingJournalEntryAutomationDescription'),
     technologies: ["Peon", "Excel", "MS SQL", "ERP", "Python"]
   },
   {
-    title: "EDI Data Collection and Upload Automation",
+    title: t('ediDataCollectionAndUploadAutomation'),
     category: "RPA",
     period: "2021.10 - 2022.02",
-    description: "Developed an automated workflow to collect EDI data from various sources and upload it into the ERP system for further processing.",
+    description: t('ediDataCollectionAndUploadAutomationDescription'),
     technologies: ["Peon", "EDI System", "ERP"]
   },
   {
-    title: "End-to-End Automation of Life Insurance Operations",
+    title: t('endToEndAutomationOfLifeInsuranceOperations'),
     category: "RPA",
     period: "2019.07 - 2021.09",
-    description: "Automated key life insurance processes including daily account closing, report generation, journal entry processing, and variable product validation.",
+    description: t('endToEndAutomationOfLifeInsuranceOperationsDescription'),
     technologies: ["WinAutomation", "vba", "Core Insurance System", "python"]
   }
 ]
