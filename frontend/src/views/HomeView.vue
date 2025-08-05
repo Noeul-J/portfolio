@@ -6,7 +6,9 @@ import ProjectSummary from '../components/ProjectSummary.vue'
 import Footer from '../components/Footer.vue'
 import { ref } from 'vue'
 import Experience from '../components/experience.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const activeMenu = ref('About')
 
 const showComponent = (menu: string) => {
@@ -36,7 +38,7 @@ const showComponent = (menu: string) => {
                     :class="activeMenu === 'About' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-[#c9d1d9] hover:text-blue-400'"
                     class="px-4 py-2 transition-colors duration-300"
                   >
-                    About
+                    {{ t('about') }}
                   </button>
                 </li>
                 <li>
@@ -45,7 +47,7 @@ const showComponent = (menu: string) => {
                     :class="activeMenu === 'Skill' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-[#c9d1d9] hover:text-blue-400'"
                     class="px-4 py-2 transition-colors duration-300"
                   >
-                    Skills
+                    {{ t('skills') }}
                   </button>
                 </li>
                 <li>
@@ -54,7 +56,7 @@ const showComponent = (menu: string) => {
                     :class="activeMenu === 'Experience' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-[#c9d1d9] hover:text-blue-400'"
                     class="px-4 py-2 transition-colors duration-300"
                   >
-                    Experience
+                    {{ t('experience') }}
                   </button>
                 </li>
                 <li>
@@ -63,7 +65,7 @@ const showComponent = (menu: string) => {
                     :class="activeMenu === 'Project' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-[#c9d1d9] hover:text-blue-400'"
                     class="px-4 py-2 transition-colors duration-300"
                   >
-                    Projects
+                    {{ t('projects') }}
                   </button>
                 </li>
               </ul>
@@ -93,24 +95,18 @@ const showComponent = (menu: string) => {
 </template>
 
 <style scoped>
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: #3b82f6 #1e293b;
-}
-
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #161b22;
   border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: #30363d;
   border-radius: 4px;
-  transition: background 0.3s ease;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
