@@ -1,6 +1,5 @@
 <script setup lang="ts">
 interface Project {
-  id: number;
   title: string;
   category: string;
   period: string;
@@ -19,41 +18,39 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-[#21262d] rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
-      <div class="flex justify-between items-start mb-4">
-        <h2 class="text-xl font-bold text-white">{{ project.title }}</h2>
+  <div class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 backdrop-blur-sm">
+    <div class="bg-[#21262d] rounded-xl p-8 max-w-3xl w-full mx-4 max-h-[85vh] overflow-y-auto border border-[#30363d] shadow-2xl">
+      <div class="flex justify-between items-start mb-6">
+        <div class="flex-1">
+          <h2 class="text-2xl font-bold bg-gradient-to-r from-[#93c5fd] to-[#60a5fa] bg-clip-text text-transparent mb-2">{{ project.title }}</h2>
+          <span class="bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] text-white px-4 py-2 rounded-full text-sm font-medium">{{ project.category }}</span>
+        </div>
         <button 
           @click="$emit('close')"
-          class="text-[#8b949e] hover:text-white transition-colors"
+          class="text-[#8b949e] hover:text-[#93c5fd] transition-colors text-2xl font-bold ml-4"
         >
           ✕
         </button>
       </div>
       
-      <div class="space-y-4">
-        <div>
-          <span class="text-[#8b949e] text-sm">Category:</span>
-          <span class="text-white ml-2">{{ project.category }}</span>
+      <div class="space-y-6">
+        <div class="flex items-center">
+          <span class="text-[#8b949e] text-sm font-medium w-20">Period:</span>
+          <span class="text-white ml-4 font-medium">{{ project.period }}</span>
         </div>
         
         <div>
-          <span class="text-[#8b949e] text-sm">Period:</span>
-          <span class="text-white ml-2">{{ project.period }}</span>
+          <span class="text-[#8b949e] text-sm font-medium block mb-3">Description:</span>
+          <p class="text-[#c9d1d9] leading-relaxed text-base">{{ project.description }}</p>
         </div>
         
         <div>
-          <span class="text-[#8b949e] text-sm">Description:</span>
-          <p class="text-white mt-1">{{ project.description }}</p>
-        </div>
-        
-        <div>
-          <span class="text-[#8b949e] text-sm">Technologies:</span>
-          <div class="flex flex-wrap gap-2 mt-1">
+          <span class="text-[#8b949e] text-sm font-medium block mb-3">Technologies:</span>
+          <div class="flex flex-wrap gap-3">
             <span 
               v-for="tech in project.technologies" 
               :key="tech"
-              class="bg-[#161b22] text-[#c9d1d9] px-2 py-1 rounded text-xs"
+              class="bg-[#161b22] text-[#93c5fd] px-4 py-2 rounded-lg text-sm border border-[#30363d] hover:border-[#93c5fd] transition-colors font-medium"
             >
               {{ tech }}
             </span>

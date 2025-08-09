@@ -19,105 +19,105 @@ interface Project {
   technologies: string[];
 }
 
-const contents: Project[] = [
+const contents = computed(() => [
   {
-    title: t('portfolio'),
+    title: t('project_portfolio'),
     category: "Web",
     period: "2025.08 - Present",
-    description: t('portfolioDescription'),
+    description: t('project_portfolioDescription'),
     technologies: ["Vue.js", "TypeScript", "TailwindCSS"]
   },
   {
-    title: t('rpaBotImprovement'),
+    title: t('project_rpaBotImprovement'),
     category: "App",
     period: "2025.06 - Present",
-    description: t('rpaBotImprovementDescription'),
+    description: t('project_rpaBotImprovementDescription'),
     technologies: ["C#", "Javascript", "NativeMessage"]
   },
   {
-    title: t('worktroUiImprovement'),
+    title: t('project_worktroUiImprovement'),
     category: "Web",
     period: "2025.01 - 2025.05",
-    description: t('worktroUiImprovementDescription'),
+    description: t('project_worktroUiImprovementDescription'),
     technologies: ["Vue.js", "typescript", "Java"]
   },
   {
-    title: t('automatedCreditEvaluation'),
+    title: t('project_automatedCreditEvaluation'),
     category: "RPA",
     period: "2024.06 - 2024.12",
-    description: t('automatedCreditEvaluationDescription'),
+    description: t('project_automatedCreditEvaluationDescription'),
     technologies: ["Worktro", "Excel", "OCR"]
   },
   { 
-    title: t('monthlySalesClosingJournalEntriesAutomation'),
+    title: t('project_monthlySalesClosingJournalEntriesAutomation'),
     category: "RPA",
     period: "2024.01 - 2024.05",
-    description: t('monthlySalesClosingJournalEntriesAutomationDescription'),
+    description: t('project_monthlySalesClosingJournalEntriesAutomationDescription'),
     technologies: ["Worktro", "Excel", "ERP"]
   },
   {
-    title: t('seasonalInventoryManagementAutomation'),
+    title: t('project_seasonalInventoryManagementAutomation'),
     category: "RPA",
     period: "2023.08 - 2023.12",
-    description: t('seasonalInventoryManagementAutomationDescription'),
+    description: t('project_seasonalInventoryManagementAutomationDescription'),
     technologies: ["Worktro", "Excel", "ERP", "WMS"]
   },
   {
-    title: t('comprehensiveIncomeTaxFilingAutomation'),
+    title: t('project_comprehensiveIncomeTaxFilingAutomation'),
     category: "RPA",
     period: "2023.06 - 2023.07",
-    description: t('comprehensiveIncomeTaxFilingAutomationDescription'),
+    description: t('project_comprehensiveIncomeTaxFilingAutomationDescription'),
     technologies: ["Worktro", "Excel", "ERP", "WMS"]
   },
   {
-    title: t('serverMaintenanceAutomation'),
+    title: t('project_serverMaintenanceAutomation'),
     category: "RPA",
     period: "2023.03 - 2023.05",
-    description: t('serverMaintenanceAutomationDescription'),
+    description: t('project_serverMaintenanceAutomationDescription'),
     technologies: ["Worktro", "PuTTY", "Shell Scripting"]
   },
   {
-    title: t('powerGenerationTaxInvoiceAutomation'),
+    title: t('project_powerGenerationTaxInvoiceAutomation'),
     category: "RPA",
     period: "2022.10 - 2023.02",
-    description: t('powerGenerationTaxInvoiceAutomationDescription'),
+    description: t('project_powerGenerationTaxInvoiceAutomationDescription'),
     technologies: ["Worktro", "Excel", "Python"]
   },
   {
-    title: t('covid19QuarantineNoticeAutomation'),
+    title: t('project_covid19QuarantineNoticeAutomation'),
     category: "RPA",
     period: "2022.07 - 2022.09",
-    description: t('covid19QuarantineNoticeAutomationDescription'),
+    description: t('project_covid19QuarantineNoticeAutomationDescription'),
     technologies: ["Worktro", "Excel", "Word", "SMS System"]
   },
   {
-    title: t('depositAndAccountingJournalEntryAutomation'),
+    title: t('project_depositAndAccountingJournalEntryAutomation'),
     category: "RPA",
     period: "2022.03 - 2022.06",
-    description: t('depositAndAccountingJournalEntryAutomationDescription'),
+    description: t('project_depositAndAccountingJournalEntryAutomationDescription'),
     technologies: ["Peon", "Excel", "MS SQL", "ERP", "Python"]
   },
   {
-    title: t('ediDataCollectionAndUploadAutomation'),
+    title: t('project_ediDataCollectionAndUploadAutomation'),
     category: "RPA",
     period: "2021.10 - 2022.02",
-    description: t('ediDataCollectionAndUploadAutomationDescription'),
+    description: t('project_ediDataCollectionAndUploadAutomationDescription'),
     technologies: ["Peon", "EDI System", "ERP"]
   },
   {
-    title: t('endToEndAutomationOfLifeInsuranceOperations'),
+    title: t('project_endToEndAutomationOfLifeInsuranceOperations'),
     category: "RPA",
     period: "2019.07 - 2021.09",
-    description: t('endToEndAutomationOfLifeInsuranceOperationsDescription'),
+    description: t('project_endToEndAutomationOfLifeInsuranceOperationsDescription'),
     technologies: ["WinAutomation", "vba", "Core Insurance System", "python"]
   }
-]
+])
 
 // 년도별로 프로젝트 그룹화
 const groupedProjects = computed(() => {
   const groups: { [key: string]: Project[] } = {};
   
-  contents.forEach(project => {
+  contents.value.forEach((project: Project) => {
     const year = project.period.split('.')[0]; // "2025.08 - Present"에서 "2025" 추출
     if (!groups[year]) {
       groups[year] = [];
@@ -152,7 +152,7 @@ const groupedProjects = computed(() => {
                  class="absolute left-1 top-6 w-0.5 bg-gradient-to-b from-[#93c5fd] to-transparent"
                  :style="{ height: `${(group.projects.length * 120) + 40}px` }"></div>
             <div class="ml-6 space-y-6">
-              <div v-for="(project, projectIndex) in group.projects" :key="project.title" 
+              <div v-for="project in group.projects" :key="project.title" 
                    class="cursor-pointer hover:bg-[#161b22] p-4 rounded-lg transition-colors duration-200"
                    @click="openModal(project)">
                 <div class="flex items-start justify-between mb-3">
