@@ -25,7 +25,7 @@ const { t } = useI18n()
       <div class="flex flex-col space-y-1">
         <div class="text-sm text-[#8b949e]">📧 ggumihj@gmail.com</div>
         <div class="text-sm text-[#8b949e]">📱 +82 10-4529-2146</div>
-        <div class="text-sm text-[#8b949e]">🔗 github.com/Noeul-J</div>
+        <div class="text-sm text-[#8b949e]">🔗 <a href="https://github.com/Noeul-J" target="_blank" class="hover:text-[#93c5fd] transition-colors">github.com/Noeul-J</a></div>
       </div>
     </div>
   </section>
