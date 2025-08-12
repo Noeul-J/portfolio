@@ -1,0 +1,10 @@
+
+# Environment variables
+.env
+frontend/.env
+backend/.env
+
+# But allow example files
+!.env.example
+!frontend/.env.example
+!backend/.env.example

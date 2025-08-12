@@ -17,11 +17,11 @@ const showComponent = (menu: string) => {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-[#0d1117]">
+  <div class="min-h-screen flex flex-col">
     <div class="flex-1 flex items-start justify-center pt-8">
       <div class="w-full max-w-7xl mx-auto px-6 lg:px-8">
         <!-- Content Area -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Left Column: Profile Info -->
           <div class="lg:col-span-1 lg:sticky lg:top-25 lg:h-fit">
             <LeftSide />
@@ -31,44 +31,46 @@ const showComponent = (menu: string) => {
           <div class="lg:col-span-2">
             <!-- Navigation Menu -->
             <div class="flex justify-center lg:justify-start mb-8">
-              <ul class="flex flex-wrap justify-center lg:justify-start space-x-6 lg:space-x-8">
-                <li>
-                  <button 
-                    @click="showComponent('About')" 
-                    :class="activeMenu === 'About' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-[#c9d1d9] hover:text-blue-400'"
-                    class="px-4 py-2 transition-colors duration-300"
-                  >
-                    {{ t('about') }}
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    @click="showComponent('Skill')" 
-                    :class="activeMenu === 'Skill' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-[#c9d1d9] hover:text-blue-400'"
-                    class="px-4 py-2 transition-colors duration-300"
-                  >
-                    {{ t('skills') }}
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    @click="showComponent('Experience')" 
-                    :class="activeMenu === 'Experience' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-[#c9d1d9] hover:text-blue-400'"
-                    class="px-4 py-2 transition-colors duration-300"
-                  >
-                    {{ t('experience') }}
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    @click="showComponent('Project')" 
-                    :class="activeMenu === 'Project' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-[#c9d1d9] hover:text-blue-400'"
-                    class="px-4 py-2 transition-colors duration-300"
-                  >
-                    {{ t('projects') }}
-                  </button>
-                </li>
-              </ul>
+              <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-2 shadow-lg border border-white/20">
+                <ul class="flex flex-wrap justify-center lg:justify-start space-x-2">
+                  <li>
+                    <button 
+                      @click="showComponent('About')" 
+                      :class="activeMenu === 'About' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md' : 'text-gray-700 hover:text-blue-600 hover:bg-white/50'"
+                      class="px-6 py-3 rounded-xl font-medium transition-all duration-300 text-sm"
+                    >
+                      {{ t('about') }}
+                    </button>
+                  </li>
+                  <li>
+                    <button 
+                      @click="showComponent('Skill')" 
+                      :class="activeMenu === 'Skill' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md' : 'text-gray-700 hover:text-blue-600 hover:bg-white/50'"
+                      class="px-6 py-3 rounded-xl font-medium transition-all duration-300 text-sm"
+                    >
+                      {{ t('skills') }}
+                    </button>
+                  </li>
+                  <li>
+                    <button 
+                      @click="showComponent('Experience')" 
+                      :class="activeMenu === 'Experience' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md' : 'text-gray-700 hover:text-blue-600 hover:bg-white/50'"
+                      class="px-6 py-3 rounded-xl font-medium transition-all duration-300 text-sm"
+                    >
+                      {{ t('experience') }}
+                    </button>
+                  </li>
+                  <li>
+                    <button 
+                      @click="showComponent('Project')" 
+                      :class="activeMenu === 'Project' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md' : 'text-gray-700 hover:text-blue-600 hover:bg-white/50'"
+                      class="px-6 py-3 rounded-xl font-medium transition-all duration-300 text-sm"
+                    >
+                      {{ t('projects') }}
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
             
             <!-- Content Area -->
@@ -100,17 +102,17 @@ const showComponent = (menu: string) => {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #161b22;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #30363d;
+  background: rgba(59, 130, 246, 0.5);
   border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #60a5fa;
+  background: rgba(59, 130, 246, 0.8);
 }
 
 /* 스크롤바가 나타날 때 부드러운 애니메이션 */
@@ -120,6 +122,6 @@ const showComponent = (menu: string) => {
 
 /* 스크롤바가 숨겨져 있을 때는 더 얇게 */
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: rgba(59, 130, 246, 0.8);
 }
 </style>

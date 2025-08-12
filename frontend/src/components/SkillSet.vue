@@ -2,7 +2,7 @@
   <section class="p-4 max-w-4xl">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                  <!-- Frontend -->
-         <div class="p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
+         <div class="p-4 rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-sm hover:border-blue-400 hover:shadow-lg transition-all duration-300">
           <div class="space-y-4">
             <h3 class="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold mb-4 text-center">Frontend</h3>
             <div class="space-y-4">
@@ -14,7 +14,7 @@
                     <path fill="#35495E" d="M19.75 7 50 59 80 7H61.5L50 27 38.25 7z"/>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">Vue.js</span> 
+                <span class="text-gray-700">Vue.js</span> 
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -23,7 +23,7 @@
                     <path fill="#fff" d="M48.016 37.031h4.797v8.282h-12.97v36.843l-.343.094c-.469.125-6.64.125-7.969-.016l-1.062-.093V45.312H17.5v-8.28l4.11-.048c2.25-.03 8.03-.03 12.843 0 4.813.032 10.906.047 13.563.047m36.61 41.219c-1.907 2.016-3.954 3.14-7.36 4.063-1.485.406-1.735.421-5.078.406-3.344-.016-3.61-.016-5.235-.438-4.203-1.078-7.594-3.187-9.906-6.172-.656-.843-1.734-2.593-1.734-2.812 0-.063.156-.203.359-.297s.625-.36.969-.562c.343-.204.968-.579 1.39-.797.422-.22 1.64-.938 2.703-1.579 1.063-.64 2.032-1.156 2.141-1.156.11 0 .313.219.469.485.937 1.578 3.125 3.593 4.672 4.28.953.407 3.062.86 4.078.86.937 0 2.656-.406 3.578-.828.984-.453 1.484-.906 2.078-1.812.406-.641.453-.813.438-2.032 0-1.125-.063-1.437-.375-1.953-.875-1.437-2.063-2.187-6.875-4.312-4.97-2.203-7.204-3.516-9.016-5.282-1.344-1.312-1.61-1.67-2.453-3.312-1.094-2.11-1.235-2.797-1.25-5.937-.016-2.204.031-2.922.265-3.672.329-1.125 1.391-3.297 1.875-3.844 1-1.172 1.36-1.531 2.063-2.11 2.125-1.75 5.438-2.906 8.61-3.015.359 0 1.546.062 2.656.14 3.187.266 5.359 1.047 7.453 2.72 1.578 1.25 3.968 4.187 3.734 4.577-.156.235-6.39 4.391-6.797 4.516-.25.078-.422-.016-.765-.422-2.125-2.547-2.985-3.094-5.047-3.219-1.469-.093-2.25.078-3.235.735-1.03.687-1.53 1.734-1.53 3.187.015 2.125.827 3.125 3.827 4.61 1.938.953 3.594 1.734 3.719 1.734.188 0 4.203 2 5.25 2.625 4.875 2.86 6.86 5.797 7.375 10.86.375 3.812-.703 7.296-3.047 9.765"/>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">TypeScript</span>
+                <span class="text-gray-700">TypeScript</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -31,14 +31,14 @@
                     <path fill="#06B6D4" d="M50 20q-20 0-25 19.994 7.5-9.997 17.5-7.498c3.804.95 6.522 3.71 9.532 6.764 4.902 4.974 10.576 10.731 22.969 10.731q20 0 24.999-19.995-7.5 9.997-17.5 7.5c-3.803-.951-6.521-3.71-9.531-6.765C68.067 25.758 62.392 20 50 20M25 49.991q-20 0-25 19.995 7.5-9.998 17.5-7.498c3.803.952 6.522 3.71 9.532 6.763C31.933 74.225 37.608 79.984 50 79.984q20 0 25-19.995-7.5 9.997-17.5 7.498c-3.803-.95-6.522-3.71-9.532-6.763C43.066 55.75 37.393 49.991 25 49.991"/>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">Tailwind CSS</span>
+                <span class="text-gray-700">Tailwind CSS</span>
               </div>
             </div>
           </div>
         </div>
 
                  <!-- Backend -->
-         <div class="p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
+         <div class="p-4 rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-sm hover:border-blue-400 hover:shadow-lg transition-all duration-300">
           <div class="space-y-4">
             <h3 class="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold mb-4 text-center">Backend</h3>
             <div class="space-y-4">
@@ -59,7 +59,7 @@
                     </defs>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">Python</span>
+                <span class="text-gray-700">Python</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -78,7 +78,7 @@
                     </defs>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">C#</span>
+                <span class="text-gray-700">C#</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -90,14 +90,14 @@
                     <path fill="#1F305F" d="M95.55 21.15c-.567.957-1.928 2.705-2.147 5.258-.04.439-.4.709-.343.034.247-2.486 1.332-4.043 2.159-5.398.371-.551.545-.298.332.107m-.439-.501c-.646.906-2.738 3.009-3.177 5.528-.078.433-.455.669-.343.005.456-2.457 2.26-4.391 3.194-5.668.416-.523.574-.253.326.135m-.393-.562c-.765.81-3.262 3.486-4.049 5.92-.14.417-.545.602-.343-.044.793-2.373 2.98-4.926 4.088-6.056.49-.456.602-.163.304.18"/>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">MariaDB</span>
+                <span class="text-gray-700">MariaDB</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Tools -->
-         <div class="p-4 rounded-lg border border-[#30363d] hover:border-[#58a6ff] transition-colors">
+         <div class="p-4 rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-sm hover:border-blue-400 hover:shadow-lg transition-all duration-300">
           <div class="space-y-4">
             <h3 class="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold mb-4 text-center">Tools</h3>
             <div class="space-y-4">
@@ -107,7 +107,7 @@
                     <path fill="#fff" d="M36,12c13.255,0,24,10.745,24,24c0,10.656-6.948,19.685-16.559,22.818c0.003-0.009,0.007-0.022,0.007-0.022 s-1.62-0.759-1.586-2.114c0.038-1.491,0-4.971,0-6.248c0-2.193-1.388-3.747-1.388-3.747s10.884,0.122,10.884-11.491 c0-4.481-2.342-6.812-2.342-6.812s1.23-4.784-0.426-6.812c-1.856-0.2-5.18,1.774-6.6,2.697c0,0-2.25-0.922-5.991-0.922 c-3.742,0-5.991,0.922-5.991,0.922c-1.419-0.922-4.744-2.897-6.6-2.697c-1.656,2.029-0.426,6.812-0.426,6.812 s-2.342,2.332-2.342,6.812c0,11.613,10.884,11.491,10.884,11.491s-1.097,1.239-1.336,3.061c-0.76,0.258-1.877,0.576-2.78,0.576 c-2.362,0-4.159-2.296-4.817-3.358c-0.649-1.048-1.98-1.927-3.221-1.927c-0.817,0-1.216,0.409-1.216,0.876s1.146,0.793,1.902,1.659 c1.594,1.826,1.565,5.933,7.245,5.933c0.617,0,1.876-0.152,2.823-0.279c-0.006,1.293-0.007,2.657,0.013,3.454 c0.034,1.355-1.586,2.114-1.586,2.114s0.004,0.013,0.007,0.022C18.948,55.685,12,46.656,12,36C12,22.745,22.745,12,36,12z"/>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">GitHub</span>
+                <span class="text-gray-700">GitHub</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -116,7 +116,7 @@
                     <path fill="#2496ED" d="M9.236 46.036h8.827a.77.77 0 0 0 .771-.771v-7.863a.77.77 0 0 0-.766-.775H9.236a.77.77 0 0 0-.77.771v7.867c0 .426.345.77.77.77m12.164.001h8.828a.77.77 0 0 0 .77-.771v-7.863a.77.77 0 0 0-.766-.775H21.4a.775.775 0 0 0-.775.775v7.863c.003.426.349.77.775.77m12.35.001h8.827a.77.77 0 0 0 .77-.771v-7.863a.77.77 0 0 0-.766-.775h-8.832a.77.77 0 0 0-.77.771v7.867c0 .426.345.77.77.77m12.204.001h8.827a.775.775 0 0 0 .775-.771v-7.863a.775.775 0 0 0-.775-.775h-8.827a.77.77 0 0 0-.771.771v7.867c0 .426.345.77.77.77M21.4 34.724h8.828a.775.775 0 0 0 .77-.775v-7.862a.77.77 0 0 0-.77-.771H21.4a.775.775 0 0 0-.775.77v7.863a.78.78 0 0 0 .775.775m12.35 0h8.827a.775.775 0 0 0 .77-.775v-7.862a.77.77 0 0 0-.77-.771H33.75a.77.77 0 0 0-.771.77v7.863c0 .426.344.773.77.775m12.204 0h8.827a.78.78 0 0 0 .775-.775v-7.862a.775.775 0 0 0-.775-.771h-8.827a.77.77 0 0 0-.771.77v7.863c0 .426.344.773.77.775m.001-11.316h8.827a.775.775 0 0 0 .775-.77V14.77a.775.775 0 0 0-.775-.77h-8.827a.77.77 0 0 0-.771.77v7.868c0 .425.345.77.77.77m12.311 22.628h8.827a.775.775 0 0 0 .775-.771v-7.863a.775.775 0 0 0-.775-.775h-8.827a.77.77 0 0 0-.77.771v7.867c0 .426.345.77.77.77"/>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">Docker</span>
+                <span class="text-gray-700">Docker</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -128,7 +128,7 @@
                     <path fill="#1ABCFE" d="M83.333 50c0 9.2-7.466 16.667-16.666 16.667S50 59.2 50 50s7.467-16.667 16.667-16.667S83.333 40.8 83.333 50"/>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">Figma</span>
+                <span class="text-gray-700">Figma</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded flex items-center justify-center">
@@ -139,28 +139,28 @@
                     <path fill="#E01E5A" fill-rule="evenodd" d="M0 63.33c-.004 5.517 4.465 9.994 9.982 9.998 5.517-.004 9.986-4.481 9.982-9.998v-9.998H9.982C4.465 53.336-.004 57.813 0 63.33m26.614 0v26.667c-.008 5.516 4.46 9.993 9.978 10.002 5.516-.004 9.985-4.481 9.981-9.998V63.338c.008-5.517-4.46-9.994-9.977-10.002-5.521 0-9.986 4.477-9.982 9.994" clip-rule="evenodd"/>
                   </svg>
                 </div>
-                <span class="text-[#c9d1d9]">Slack</span>
+                <span class="text-gray-700">Slack</span>
               </div>
             </div>
           </div>
-                 </div>
+        </div>
      </div>
      
            <!-- GitHub Contribution Graph -->
       <div class="mt-12">
         <h3 class="text-lg font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-bold mb-6 text-center">GitHub Activity</h3>
         <div class="flex justify-center">
-          <div class="bg-[#161b22] rounded-lg border border-[#30363d] p-6 w-full max-w-6xl">
+          <div class="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200/50 p-6 w-full max-w-6xl shadow-lg">
             <!-- 로딩 상태 -->
             <div v-if="loading" class="flex justify-center items-center h-32">
-              <div class="text-[#8b949e]">GitHub 데이터를 불러오는 중...</div>
+              <div class="text-gray-600">GitHub 데이터를 불러오는 중...</div>
             </div>
             
             <!-- 에러 상태 -->
             <div v-else-if="error" class="flex justify-center items-center h-32">
               <div class="text-red-400 text-center">
                 <div class="mb-2">데이터를 불러올 수 없습니다</div>
-                <div class="text-sm text-[#8b949e]">{{ error }}</div>
+                <div class="text-sm text-gray-500">{{ error }}</div>
               </div>
             </div>
             
@@ -175,7 +175,7 @@
                   </div>
                 </div>
               </div>
-                       <div class="flex items-center justify-center mt-4 space-x-4 text-xs text-[#8b949e]">
+                       <div class="flex items-center justify-center mt-4 space-x-4 text-xs text-gray-600">
               <span>Less</span>
               <div class="flex space-x-1">
                 <div class="w-4 h-4 rounded-sm bg-[#aaa1a1]"></div>
