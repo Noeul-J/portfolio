@@ -11,7 +11,7 @@ const toggleLanguage = () => {
 <template>
   <button 
     @click="toggleLanguage"
-    class="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm border border-white/30 hover:border-blue-400 text-gray-700 hover:text-blue-600 px-4 py-2 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20 font-medium"
+    class="bg-white/60 backdrop-blur-sm border border-white/30 hover:border-blue-400 text-gray-700 hover:text-blue-600 px-3 py-2 rounded-lg transition-all duration-300 hover:shadow-sm hover:shadow-blue-400/20 font-medium text-sm"
   >
     {{ t('toggleLanguage') }}
   </button>

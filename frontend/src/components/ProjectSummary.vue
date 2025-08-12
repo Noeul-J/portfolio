@@ -241,14 +241,14 @@ onMounted(() => {
     <div class="container">
       <!-- Header -->
       <header class="header">
-        <div class="hero-section">
+        <!-- <div class="hero-section">
           <h1 class="hero-title">
             <span class="gradient-text">프로젝트 포트폴리오</span>
           </h1>
           <p class="hero-subtitle">
             6년간 <span class="highlight">95건의 자동화 프로젝트</span>를 통해 쌓은 경험과 성과
           </p>
-        </div>
+        </div> -->
 
         <!-- Controls -->
         <div class="controls">
@@ -265,7 +265,7 @@ onMounted(() => {
             </button>
           </nav>
 
-          <!-- Search -->
+          <!-- Search
           <div class="search-container">
             <input
               v-model="query"
@@ -273,7 +273,7 @@ onMounted(() => {
               placeholder="검색: 프로젝트명, 기술, 성과..."
               class="search-input"
             />
-          </div>
+          </div> -->
         </div>
       </header>
 
