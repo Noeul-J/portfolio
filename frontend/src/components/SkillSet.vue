@@ -349,10 +349,10 @@ onMounted(() => {
   color: #1e293b;
   position: relative;
   overflow: hidden;
-  min-height: 60vh;
+  height: 100%;
   display: flex;
   align-items: center;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .skills::before {
@@ -381,9 +381,9 @@ onMounted(() => {
 /* Skills Grid */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-bottom: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 /* Skill Category */
@@ -391,7 +391,7 @@ onMounted(() => {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 16px;
-  padding: 24px;
+  padding: 16px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   position: relative;
@@ -417,7 +417,7 @@ onMounted(() => {
 .skill-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .skill-title {
@@ -681,7 +681,8 @@ onMounted(() => {
   }
   
   .contribution-grid {
-    grid-template-columns: repeat(20, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+;
     padding: 12px;
   }
   

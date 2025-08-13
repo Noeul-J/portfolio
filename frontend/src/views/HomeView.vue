@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import About from '../components/about.vue'
-import LeftSide from '../components/leftSide.vue'
+import Profile from '../components/Profile.vue'
 import SkillSet from '../components/SkillSet.vue'
-import ProjectSummary from '../components/ProjectSummary.vue'
+import Experience from '../components/experience.vue'
+import Project from '../components/Project.vue'
 import Footer from '../components/Footer.vue'
 import LanguageToggle from '../components/LanguageToggle.vue'
 import { ref } from 'vue'
-import Experience from '../components/experience.vue'
+
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -17,106 +18,13 @@ const showComponent = (menu: string) => {
 }
 </script>
 
-<template>
-  <div class="app-container">
-    <!-- Top Navigation Bar -->
-    <div class="navigation-bar">
-      <div class="nav-container">
-        <div class="nav-content">
-          <!-- Logo/Title -->
-          <div class="logo">
-            Portfolio
-          </div>
-          
-          <!-- Navigation Menu -->
-          <div class="nav-menu">
-            <div class="menu-container">
-              <ul class="menu-list">
-                <li>
-                  <button 
-                    @click="showComponent('About')" 
-                    :class="activeMenu === 'About' ? 'menu-btn active' : 'menu-btn'"
-                  >
-                    {{ t('about') }}
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    @click="showComponent('Skill')" 
-                    :class="activeMenu === 'Skill' ? 'menu-btn active' : 'menu-btn'"
-                  >
-                    {{ t('skills') }}
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    @click="showComponent('Experience')" 
-                    :class="activeMenu === 'Experience' ? 'menu-btn active' : 'menu-btn'"
-                  >
-                    {{ t('experience') }}
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    @click="showComponent('Project')" 
-                    :class="activeMenu === 'Project' ? 'menu-btn active' : 'menu-btn'"
-                  >
-                    {{ t('projects') }}
-                  </button>
-                </li>
-              </ul>
-            </div>
-            
-            <!-- Language Toggle -->
-            <LanguageToggle />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-      <div class="content-container">
-        <!-- Content Area -->
-        <div class="content-grid">
-          <!-- Left Column: Profile Info -->
-          <div class="left-column">
-            <LeftSide />
-          </div>
-          
-          <!-- Right Column: Content -->
-          <div class="right-column">
-            <!-- Content Area -->
-            <div class="content-wrapper">
-              <div class="content-scroll">
-                <!-- About Section -->
-                <About v-if="activeMenu === 'About'" />
-                
-                <!-- Skills Section -->
-                <SkillSet v-else-if="activeMenu === 'Skill'" />
-                
-                <!-- Experience Section -->
-                <Experience v-else-if="activeMenu === 'Experience'" />
-                
-                <!-- Projects Section -->
-                <ProjectSummary v-else-if="activeMenu === 'Project'" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <Footer />
-  </div>
-</template>
-
 <style scoped>
 /* App Container */
 .app-container {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* Navigation Bar */
@@ -245,20 +153,20 @@ const showComponent = (menu: string) => {
 
 @media (min-width: 1024px) {
   .content-grid {
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 0.8fr 6fr;
     gap: 32px;
   }
 }
 
 @media (min-width: 1280px) {
   .content-grid {
-    grid-template-columns: 2fr 4fr;
+    grid-template-columns: 0.7fr 7fr;
   }
 }
 
 @media (min-width: 1536px) {
   .content-grid {
-    grid-template-columns: 2fr 5fr;
+    grid-template-columns: 0.6fr 8fr;
   }
 }
 
@@ -299,6 +207,8 @@ const showComponent = (menu: string) => {
 .content-scroll {
   height: calc(100vh - 120px);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 1024px) {
@@ -335,3 +245,98 @@ const showComponent = (menu: string) => {
   }
 }
 </style>
+
+<template>
+  <div class="app-container">
+    <!-- Top Navigation Bar -->
+    <div class="navigation-bar">
+      <div class="nav-container">
+        <div class="nav-content">
+          <!-- Logo/Title -->
+          <div class="logo">
+            Portfolio
+          </div>
+          
+          <!-- Navigation Menu -->
+          <div class="nav-menu">
+            <div class="menu-container">
+              <ul class="menu-list">
+                <li>
+                  <button 
+                    @click="showComponent('About')" 
+                    :class="activeMenu === 'About' ? 'menu-btn active' : 'menu-btn'"
+                  >
+                    {{ t('about') }}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    @click="showComponent('Skill')" 
+                    :class="activeMenu === 'Skill' ? 'menu-btn active' : 'menu-btn'"
+                  >
+                    {{ t('skills') }}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    @click="showComponent('Experience')" 
+                    :class="activeMenu === 'Experience' ? 'menu-btn active' : 'menu-btn'"
+                  >
+                    {{ t('experience') }}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    @click="showComponent('Project')" 
+                    :class="activeMenu === 'Project' ? 'menu-btn active' : 'menu-btn'"
+                  >
+                    {{ t('projects') }}
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
+            <!-- Language Toggle -->
+            <LanguageToggle />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="content-container">
+        <!-- Content Area -->
+        <div class="content-grid">
+          <!-- Left Column: Profile Info -->
+          <div class="left-column">
+            <Profile />
+          </div>
+          
+          <!-- Right Column: Content -->
+          <div class="right-column">
+            <!-- Content Area -->
+            <div class="content-wrapper">
+              <div class="content-scroll">
+                <!-- About Section -->
+                <About v-if="activeMenu === 'About'" />
+                
+                <!-- Skills Section -->
+                <SkillSet v-else-if="activeMenu === 'Skill'" />
+                
+                <!-- Experience Section -->
+                <Experience v-else-if="activeMenu === 'Experience'" />
+                
+                <!-- Projects Section -->
+                <Project v-else-if="activeMenu === 'Project'" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <Footer />
+  </div>
+</template>
+

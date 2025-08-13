@@ -117,8 +117,8 @@
   overflow: hidden;
   min-height: 85vh;
   display: flex;
-  align-items: center;
-  padding: 80px 0;
+  align-items: flex-start;
+  padding: 40px 0;
 }
 
 .experience::before {
@@ -177,7 +177,7 @@
 .timeline {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   align-items: stretch;
 }

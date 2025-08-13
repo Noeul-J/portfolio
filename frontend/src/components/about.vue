@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { selectLanguage } from '../store'
-import css from '../assets/main.css'
 const { t } = useI18n()
 
 const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리오%20보고%20연락드립니다'
@@ -9,7 +8,7 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
 
 <style scoped>
 .about {
-  min-height: auto;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   padding: 40px 0;
@@ -53,6 +52,7 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  white-space: pre-line;
 }
 
 .hero-stats {
@@ -108,6 +108,7 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
 /* Contact Section */
 .contact-section {
   text-align: center;
+  animation: fadeInUp 1s ease-out 0.3s both;
 }
 
 .contact-card {
@@ -229,26 +230,22 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
       <div class="hero-section">
         <div class="hero-content">
           <p class="hero-subtitle">
-            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
-            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
-            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />  
-            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
-            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
-            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
+            {{ t('aboutMe_Content') }}
           </p>
         </div>
+
         <div class="hero-stats">
           <div class="stat-card">
             <div class="stat-number">95+</div>
-            <div class="stat-label">자동화 과제</div>
+            <div class="stat-label">{{ t('aboutMe_Automation') }}</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">6년+</div>
-            <div class="stat-label">경력</div>
+            <div class="stat-number">6 {{ t('aboutMe_Year') }}</div>
+            <div class="stat-label">{{ t('aboutMe_Experience') }}</div>
           </div>
           <div class="stat-card">
             <div class="stat-number">10+</div>
-            <div class="stat-label">프로젝트</div>
+            <div class="stat-label">{{ t('aboutMe_Project') }}</div>
           </div>
         </div>
       </div>
@@ -256,10 +253,10 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
       <!-- Contact CTA -->
       <div class="contact-section">
         <div class="contact-card">
-          <h2>함께 일하고 싶으신가요?</h2>
-          <p>자동화 프로젝트나 협업에 대해 이야기해보세요</p>
+          <h2>{{t('aboutMe_Message')}}</h2>
+          <p>{{ t('aboutMe_ContactMessage') }}</p>
           <a :href="mailto" class="contact-btn">
-            <span>연락하기</span>
+            <span>{{ t('aboutMe_ContactButton') }}</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
