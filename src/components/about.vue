@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { selectLanguage } from '../store'
 const { t } = useI18n()
 
 const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리오%20보고%20연락드립니다'
