@@ -11,7 +11,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-const activeMenu = ref('About')
+const activeMenu = ref('AboutMe')
 
 const showComponent = (menu: string) => {
   activeMenu.value = menu
