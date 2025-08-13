@@ -1,5 +1,361 @@
+<style scoped>
+.projects {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+  color: #1e293b;
+  position: relative;
+  overflow: hidden;
+  min-height: 85vh;
+  padding: 40px 0;
+}
+
+.projects::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Header */
+.header {
+  margin-bottom: 40px;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 48px;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.highlight {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.category-tab {
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.category-tab:hover {
+  border-color: #3b82f6;
+  background: #f8fafc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-tab.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.search-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.project-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04);
+  border-color: #3b82f6;
+}
+
+.project-emoji {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.project-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.project-period {
+  font-size: 0.75rem;
+  color: #64748b;
+  white-space: nowrap;
+  padding: 4px 8px;
+  background: #f1f5f9;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.project-highlight {
+  color: #475569;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-tag {
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 12px;
+  color: #3b82f6;
+}
+
+.project-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: #3b82f6;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* No Results */
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: #64748b;
+}
+
+.no-results-icon {
+  font-size: 4rem;
+  margin-bottom: 24px;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #1e293b;
+}
+
+
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .projects {
+    padding: 30px 0;
+    min-height: 50vh;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .controls {
+    gap: 16px;
+  }
+  
+  .category-tabs {
+    gap: 8px;
+  }
+  
+  .category-tab {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .project-card {
+    padding: 20px;
+  }
+  
+  .modal-header {
+    padding: 24px 24px 0;
+  }
+  
+  .modal-body {
+    padding: 24px;
+  }
+  
+  .modal-emoji {
+    font-size: 2.5rem;
+  }
+  
+  .modal-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .project-period {
+    align-self: flex-start;
+  }
+  
+  .modal-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .modal-emoji {
+    align-self: center;
+  }
+}
+</style>
 <script setup>
 import { computed, onMounted, ref } from 'vue'
+import { selectLanguage } from '../store'
+import ProjectModal from './ProjectModal.vue'
+
 
 // Category tabs
 const categories = [
@@ -27,9 +383,8 @@ function open(p) {
   active.value = p
 }
 
-function categoryLabel(v) {
-  const f = categories.find((c) => c.value === v)
-  return f ? f.label : v
+function closeModal() {
+  active.value = null
 }
 
 // Project data (요청해 주신 내용 반영)
@@ -241,14 +596,6 @@ onMounted(() => {
     <div class="container">
       <!-- Header -->
       <header class="header">
-        <!-- <div class="hero-section">
-          <h1 class="hero-title">
-            <span class="gradient-text">프로젝트 포트폴리오</span>
-          </h1>
-          <p class="hero-subtitle">
-            6년간 <span class="highlight">95건의 자동화 프로젝트</span>를 통해 쌓은 경험과 성과
-          </p>
-        </div> -->
 
         <!-- Controls -->
         <div class="controls">
@@ -264,16 +611,6 @@ onMounted(() => {
               {{ c.label }}
             </button>
           </nav>
-
-          <!-- Search
-          <div class="search-container">
-            <input
-              v-model="query"
-              type="text"
-              placeholder="검색: 프로젝트명, 기술, 성과..."
-              class="search-input"
-            />
-          </div> -->
         </div>
       </header>
 
@@ -314,555 +651,15 @@ onMounted(() => {
           <p>다른 검색어나 카테고리를 시도해보세요</p>
         </div>
       </main>
-
-      <!-- Modal -->
-      <transition name="modal">
-        <div v-if="active" class="modal-overlay" @click="active = null">
-          <div class="modal-content" @click.stop>
-            <div class="modal-header">
-              <div class="modal-emoji">{{ active.emoji }}</div>
-              <div class="modal-info">
-                <h3 class="modal-title">{{ active.title }}</h3>
-                <p class="modal-meta">
-                  {{ categoryLabel(active.category) }} · {{ active.period }}
-                </p>
-              </div>
-              <button class="modal-close" @click="active = null">✕</button>
-            </div>
-
-            <div class="modal-body">
-              <p class="modal-overview">{{ active.overview }}</p>
-
-              <section class="modal-section">
-                <h4 class="section-title">주요 기능 / 활동</h4>
-                <ul class="feature-list">
-                  <li v-for="(f,i) in active.features" :key="i">{{ f }}</li>
-                </ul>
-              </section>
-
-              <section class="modal-section">
-                <h4 class="section-title">성과</h4>
-                <ul class="outcome-list">
-                  <li v-for="(o,i) in active.outcomes" :key="i">{{ o }}</li>
-                </ul>
-              </section>
-
-              <div class="modal-tags">
-                <span v-for="tag in active.tags" :key="tag" class="modal-tag">
-                  #{{ tag }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </transition>
     </div>
+
+    <!-- Project Modal -->
+    <ProjectModal 
+      :active="active" 
+      :categories="categories"
+      @close="closeModal"
+    />
   </div>
 </template>
 
-<style scoped>
-.projects {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 50%, rgba(241, 245, 249, 0.9) 100%);
-  color: #1e293b;
-  min-height: 100vh;
-  padding: 80px 0;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-}
 
-.projects::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  position: relative;
-  z-index: 1;
-}
-
-/* Header */
-.header {
-  margin-bottom: 60px;
-}
-
-.hero-section {
-  text-align: center;
-  margin-bottom: 48px;
-  animation: fadeInUp 1s ease-out;
-}
-
-.hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  letter-spacing: -0.02em;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  display: inline-block;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: #475569;
-  line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.highlight {
-  color: #fbbf24;
-  font-weight: 600;
-}
-
-/* Controls */
-.controls {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: center;
-}
-
-.category-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.category-tab {
-  padding: 12px 20px;
-  border-radius: 25px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.6);
-  color: #475569;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.category-tab:hover {
-  border-color: rgba(59, 130, 246, 0.3);
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.category-tab.active {
-  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-  border-color: transparent;
-  color: white;
-}
-
-.search-container {
-  width: 100%;
-  max-width: 400px;
-}
-
-.search-input {
-  width: 100%;
-  padding: 16px 20px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.6);
-  color: #1e293b;
-  font-size: 0.875rem;
-  transition: all 0.3s ease;
-}
-
-.search-input::placeholder {
-  color: rgba(71, 85, 105, 0.6);
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  background: rgba(255, 255, 255, 0.8);
-}
-
-/* Projects Grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 24px;
-  margin-bottom: 80px;
-}
-
-.project-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  padding: 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #3b82f6, #6366f1);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-.project-card:hover::before {
-  transform: scaleX(1);
-}
-
-.project-emoji {
-  font-size: 3rem;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-.project-content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.project-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.project-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #1e293b;
-  line-height: 1.3;
-  flex: 1;
-}
-
-.project-period {
-  font-size: 0.75rem;
-  color: #64748b;
-  white-space: nowrap;
-  padding: 4px 8px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 6px;
-}
-
-.project-highlight {
-  color: #475569;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.project-tag {
-  font-size: 0.7rem;
-  padding: 4px 8px;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 12px;
-  color: #3b82f6;
-}
-
-.project-action {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
-  color: #3b82f6;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.arrow-icon {
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover .arrow-icon {
-  transform: translateX(4px);
-}
-
-/* No Results */
-.no-results {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 80px 20px;
-  color: #64748b;
-}
-
-.no-results-icon {
-  font-size: 4rem;
-  margin-bottom: 24px;
-}
-
-.no-results h3 {
-  font-size: 1.5rem;
-  margin-bottom: 12px;
-  color: #1e293b;
-}
-
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 20px;
-}
-
-.modal-content {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 24px;
-  max-width: 600px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-.modal-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 32px 32px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 24px;
-}
-
-.modal-emoji {
-  font-size: 3rem;
-  flex-shrink: 0;
-}
-
-.modal-info {
-  flex: 1;
-}
-
-.modal-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 8px;
-}
-
-.modal-meta {
-  color: #64748b;
-  font-size: 0.875rem;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  color: #64748b;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.modal-close:hover {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
-}
-
-.modal-body {
-  padding: 32px;
-}
-
-.modal-overview {
-  color: #475569;
-  line-height: 1.6;
-  margin-bottom: 32px;
-}
-
-.modal-section {
-  margin-bottom: 24px;
-}
-
-.section-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1e293b;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.feature-list,
-.outcome-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.feature-list li,
-.outcome-list li {
-  color: #64748b;
-  padding: 8px 0;
-  padding-left: 20px;
-  position: relative;
-}
-
-.feature-list li::before,
-.outcome-list li::before {
-  content: '•';
-  color: #3b82f6;
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-.modal-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 24px;
-}
-
-.modal-tag {
-  font-size: 0.75rem;
-  padding: 6px 12px;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 16px;
-  color: #3b82f6;
-}
-
-/* Modal Transitions */
-.modal-enter-active,
-.modal-leave-active {
-  transition: all 0.3s ease;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .projects {
-    padding: 60px 0;
-  }
-  
-  .container {
-    padding: 0 16px;
-  }
-  
-  .controls {
-    gap: 16px;
-  }
-  
-  .category-tabs {
-    gap: 8px;
-  }
-  
-  .category-tab {
-    padding: 10px 16px;
-    font-size: 0.8rem;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  
-  .project-card {
-    padding: 20px;
-  }
-  
-  .modal-header {
-    padding: 24px 24px 0;
-  }
-  
-  .modal-body {
-    padding: 24px;
-  }
-  
-  .modal-emoji {
-    font-size: 2.5rem;
-  }
-  
-  .modal-title {
-    font-size: 1.25rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .project-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  
-  .project-period {
-    align-self: flex-start;
-  }
-  
-  .modal-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 12px;
-  }
-  
-  .modal-emoji {
-    align-self: center;
-  }
-}
-</style>

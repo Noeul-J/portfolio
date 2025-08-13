@@ -1,59 +1,18 @@
-<template>
-  <section id="about" class="about">
-    <div class="container">
-      <!-- Hero Section -->
-      <div class="hero-section">
-        <div class="hero-content">
-          <p class="hero-subtitle">
-            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어
-          </p>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-card">
-            <div class="stat-number">95+</div>
-            <div class="stat-label">자동화 프로젝트</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">6년+</div>
-            <div class="stat-label">경력</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">프로젝트</div>
-          </div>
-        </div>
-      </div>
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { selectLanguage } from '../store'
+import css from '../assets/main.css'
+const { t } = useI18n()
 
-      <!-- Contact CTA -->
-      <div class="contact-section">
-        <div class="contact-card">
-          <h2>함께 일하고 싶으신가요?</h2>
-          <p>자동화 프로젝트나 협업에 대해 이야기해보세요</p>
-          <a :href="mailto" class="contact-btn">
-            <span>연락하기</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
-
-<script setup>
 const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리오%20보고%20연락드립니다'
 </script>
 
 <style scoped>
 .about {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 50%, rgba(241, 245, 249, 0.9) 100%);
-  color: #1e293b;
-  min-height: 100vh;
-  padding: 20px 0;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
 }
 
 .about::before {
@@ -63,8 +22,10 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -74,6 +35,7 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
   padding: 0 24px;
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 /* Hero Section */
@@ -83,35 +45,14 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
   animation: fadeInUp 1s ease-out;
 }
 
-.hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  letter-spacing: -0.02em;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  display: inline-block;
-}
-
 .hero-subtitle {
   font-size: 1.125rem;
   color: #475569;
   margin-bottom: 24px;
   line-height: 1.5;
-  max-width: 600px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.highlight {
-  color: #fbbf24;
-  font-weight: 600;
 }
 
 .hero-stats {
@@ -123,25 +64,37 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
   padding: 16px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
 }
 
 .stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04);
+  border-color: #3b82f6;
 }
 
 .stat-number {
   font-size: 2rem;
   font-weight: 800;
-  color: #667eea;
+  color: #3b82f6;
   margin-bottom: 6px;
 }
 
@@ -158,20 +111,31 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
 }
 
 .contact-card {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 24px;
-  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 32px;
   max-width: 600px;
   margin: 0 auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
 }
 
 .contact-card h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   color: #1e293b;
 }
 
@@ -185,7 +149,7 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
   color: white;
   padding: 16px 32px;
   border-radius: 12px;
@@ -224,7 +188,8 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
 /* Responsive Design */
 @media (max-width: 768px) {
   .about {
-    padding: 60px 0;
+    padding: 30px 0;
+    min-height: 50vh;
   }
   
   .container {
@@ -245,7 +210,7 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
   }
   
   .contact-card {
-    padding: 32px 24px;
+    padding: 24px;
   }
 }
 
@@ -254,14 +219,55 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
     grid-template-columns: 1fr;
     max-width: 200px;
   }
-  
-  .expertise-item{
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .expertise-icon {
-    align-self: center;
-  }
 }
 </style>
+
+<template>
+  <section id="about" class="about">
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <div class="hero-content">
+          <p class="hero-subtitle">
+            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
+            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
+            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />  
+            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
+            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
+            6년+ 경력으로 95건의 자동화 프로젝트를 성공적으로 완료한 자동화 엔지니어<br />
+          </p>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-number">95+</div>
+            <div class="stat-label">자동화 과제</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">6년+</div>
+            <div class="stat-label">경력</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">프로젝트</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact CTA -->
+      <div class="contact-section">
+        <div class="contact-card">
+          <h2>함께 일하고 싶으신가요?</h2>
+          <p>자동화 프로젝트나 협업에 대해 이야기해보세요</p>
+          <a :href="mailto" class="contact-btn">
+            <span>연락하기</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+

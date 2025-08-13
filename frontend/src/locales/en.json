@@ -22,6 +22,7 @@
   "description": "Description",
   "technologies": "Technologies",
   "close": "Close",
+  "aboutMeContent": "I am a developer with 6 years of experience in RPA and 3 years in web development, leading over 10 automation projects across finance, manufacturing, and distribution. Proficient in Vue, Node.js, Python, and C#, I excel at delivering efficient and scalable solutions. I am now preparing to transition into the cybersecurity development field.",
   "project_portfolio" : "Portfolio",
   "project_portfolioDescription" : "portfolio web site based on Vue.js. I try to descript my career in one single page.",
   "project_rpaBotImprovement" : "RPA Bot Improvement",

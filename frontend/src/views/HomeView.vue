@@ -18,25 +18,24 @@ const showComponent = (menu: string) => {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="app-container">
     <!-- Top Navigation Bar -->
-    <div class="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-sm border-b border-gray-200/50">
-      <div class="max-w-7xl mx-auto px-4 lg:px-8 xl:px-12">
-        <div class="flex items-center justify-between h-16">
+    <div class="navigation-bar">
+      <div class="nav-container">
+        <div class="nav-content">
           <!-- Logo/Title -->
-          <div class="text-xl font-bold text-gray-800">
+          <div class="logo">
             Portfolio
           </div>
           
           <!-- Navigation Menu -->
-          <div class="flex items-center space-x-4">
-            <div class="bg-white/60 backdrop-blur-sm rounded-xl p-1 shadow-sm border border-white/30">
-              <ul class="flex space-x-1">
+          <div class="nav-menu">
+            <div class="menu-container">
+              <ul class="menu-list">
                 <li>
                   <button 
                     @click="showComponent('About')" 
-                    :class="activeMenu === 'About' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm' : 'text-gray-700 hover:text-blue-600 hover:bg-white/50'"
-                    class="px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm"
+                    :class="activeMenu === 'About' ? 'menu-btn active' : 'menu-btn'"
                   >
                     {{ t('about') }}
                   </button>
@@ -44,8 +43,7 @@ const showComponent = (menu: string) => {
                 <li>
                   <button 
                     @click="showComponent('Skill')" 
-                    :class="activeMenu === 'Skill' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm' : 'text-gray-700 hover:text-blue-600 hover:bg-white/50'"
-                    class="px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm"
+                    :class="activeMenu === 'Skill' ? 'menu-btn active' : 'menu-btn'"
                   >
                     {{ t('skills') }}
                   </button>
@@ -53,8 +51,7 @@ const showComponent = (menu: string) => {
                 <li>
                   <button 
                     @click="showComponent('Experience')" 
-                    :class="activeMenu === 'Experience' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm' : 'text-gray-700 hover:text-blue-600 hover:bg-white/50'"
-                    class="px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm"
+                    :class="activeMenu === 'Experience' ? 'menu-btn active' : 'menu-btn'"
                   >
                     {{ t('experience') }}
                   </button>
@@ -62,8 +59,7 @@ const showComponent = (menu: string) => {
                 <li>
                   <button 
                     @click="showComponent('Project')" 
-                    :class="activeMenu === 'Project' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm' : 'text-gray-700 hover:text-blue-600 hover:bg-white/50'"
-                    class="px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm"
+                    :class="activeMenu === 'Project' ? 'menu-btn active' : 'menu-btn'"
                   >
                     {{ t('projects') }}
                   </button>
@@ -79,22 +75,20 @@ const showComponent = (menu: string) => {
     </div>
 
     <!-- Main Content -->
-    <div class="flex-1 flex items-start justify-center pt-20">
-      <div class="w-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-12">
+    <div class="main-content">
+      <div class="content-container">
         <!-- Content Area -->
-        <div class="grid grid-cols-1 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-6 lg:gap-8">
+        <div class="content-grid">
           <!-- Left Column: Profile Info -->
-          <div class="lg:col-span-2 xl:col-span-2 2xl:col-span-2 order-2 lg:order-1">
-            <div class="lg:sticky lg:top-20">
-              <LeftSide />
-            </div>
+          <div class="left-column">
+            <LeftSide />
           </div>
           
           <!-- Right Column: Content -->
-          <div class="lg:col-span-3 xl:col-span-4 2xl:col-span-5 order-1 lg:order-2">
+          <div class="right-column">
             <!-- Content Area -->
-            <div class="bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg overflow-hidden">
-              <div class="h-[calc(100vh-120px)] lg:h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
+            <div class="content-wrapper">
+              <div class="content-scroll">
                 <!-- About Section -->
                 <About v-if="activeMenu === 'About'" />
                 
@@ -118,32 +112,226 @@ const showComponent = (menu: string) => {
 </template>
 
 <style scoped>
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+/* App Container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
+/* Navigation Bar */
+.navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.4);
-  border-radius: 3px;
-  transition: background 0.3s ease;
+.nav-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.7);
+@media (min-width: 1024px) {
+  .nav-container {
+    padding: 0 32px;
+  }
 }
 
-/* 스크롤바가 나타날 때 부드러운 애니메이션 */
-.custom-scrollbar {
+@media (min-width: 1280px) {
+  .nav-container {
+    padding: 0 48px;
+  }
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.menu-container {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.menu-list {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
   transition: all 0.3s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #374151;
 }
 
-/* 스크롤바가 숨겨져 있을 때는 더 얇게 */
-.custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.7);
+.menu-btn:hover {
+  color: #2563eb;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.menu-btn.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%);
+  color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-container {
+    padding: 0 48px;
+  }
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 2fr 3fr;
+    gap: 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-grid {
+    grid-template-columns: 2fr 4fr;
+  }
+}
+
+@media (min-width: 1536px) {
+  .content-grid {
+    grid-template-columns: 2fr 5fr;
+  }
+}
+
+/* Left Column */
+.left-column {
+  order: 2;
+}
+
+@media (min-width: 1024px) {
+  .left-column {
+    order: 1;
+    position: sticky;
+    top: 32px;
+  }
+}
+
+/* Right Column */
+.right-column {
+  order: 1;
+}
+
+@media (min-width: 1024px) {
+  .right-column {
+    order: 2;
+  }
+}
+
+/* Content Wrapper */
+.content-wrapper {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.content-scroll {
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+@media (min-width: 1024px) {
+  .content-scroll {
+    height: calc(100vh - 140px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 12px;
+  }
+  
+  .content-container {
+    padding: 0 12px;
+  }
+  
+  .nav-content {
+    height: 56px;
+  }
+  
+  .logo {
+    font-size: 1.125rem;
+  }
+  
+  .menu-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .main-content {
+    padding-top: 72px;
+  }
 }
 </style>

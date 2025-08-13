@@ -90,7 +90,6 @@ const { t } = useI18n()
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 160px);
   animation: fadeInUp 1s ease-out;
 }
 
@@ -150,42 +149,6 @@ const { t } = useI18n()
   font-size: 1.125rem;
   color: #475569;
   font-weight: 500;
-}
-
-/* Profile Stats */
-.profile-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.stat-item {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 16px;
-  transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(59, 130, 246, 0.3);
-  transform: translateY(-2px);
-}
-
-.stat-number {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #667eea;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  color: #94a3b8;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 /* Contact Info */
@@ -296,19 +259,6 @@ const { t } = useI18n()
   
   .profile-name {
     font-size: 1.75rem;
-  }
-  
-  .profile-stats {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  
-  .stat-item {
-    padding: 12px;
-  }
-  
-  .stat-number {
-    font-size: 1.25rem;
   }
 }
 

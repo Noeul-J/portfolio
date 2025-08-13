@@ -1,6 +1,8 @@
 import {createPinia} from 'pinia'
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 export const pinia = createPinia();
 
-export const selectLanguage = ref('ko');
+export const selectLanguage = computed(() => {
+    return localStorage.getItem('language') || 'ko';
+})
