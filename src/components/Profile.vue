@@ -152,10 +152,11 @@ const { t } = useI18n()
 .download-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 16px 32px;
+  padding: 16px 40px;
   border-radius: 12px;
   text-decoration: none;
   font-weight: 600;
@@ -164,6 +165,9 @@ const { t } = useI18n()
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  width: 100%;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .download-btn:hover {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import About from '../components/about.vue'
+import AboutMe from '../components/aboutMe.vue'
 import Profile from '../components/Profile.vue'
 import SkillSet from '../components/SkillSet.vue'
 import Experience from '../components/experience.vue'
@@ -40,20 +40,20 @@ const showComponent = (menu: string) => {
 }
 
 .nav-container {
-  max-width: 1440px;
+  max-width: 90%;
   margin: 0 auto;
   padding: 0 16px;
 }
 
 @media (min-width: 1024px) {
   .nav-container {
-    padding: 0 32px;
+    padding: 0 16px;
   }
 }
 
 @media (min-width: 1280px) {
   .nav-container {
-    padding: 0 48px;
+    padding: 0 24px;
   }
 }
 
@@ -68,6 +68,11 @@ const showComponent = (menu: string) => {
   font-size: 1.25rem;
   font-weight: 700;
   color: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .nav-menu {
@@ -251,10 +256,10 @@ const showComponent = (menu: string) => {
               <ul class="menu-list">
                 <li>
                   <button 
-                    @click="showComponent('About')" 
-                    :class="activeMenu === 'About' ? 'menu-btn active' : 'menu-btn'"
+                    @click="showComponent('AboutMe')" 
+                    :class="activeMenu === 'AboutMe' ? 'menu-btn active' : 'menu-btn'"
                   >
-                    {{ t('about') }}
+                    {{ t('aboutMe') }}
                   </button>
                 </li>
                 <li>
@@ -307,7 +312,7 @@ const showComponent = (menu: string) => {
             <div class="content-wrapper">
               <div class="content-scroll">
                 <!-- About Section -->
-                <About v-if="activeMenu === 'About'" />
+                <AboutMe v-if="activeMenu === 'AboutMe'" />
                 
                 <!-- Skills Section -->
                 <SkillSet v-else-if="activeMenu === 'Skill'" />
