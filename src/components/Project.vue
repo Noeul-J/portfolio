@@ -355,16 +355,18 @@
 import { computed, onMounted, ref } from 'vue'
 import { selectLanguage } from '../store'
 import ProjectModal from './ProjectModal.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 
 // Category tabs
-const categories = [
-  { label: '전체', value: 'all' },
-  { label: 'RPA · 업무자동화', value: 'rpa' },
-  { label: '개발 · UI', value: 'dev' },
-  { label: '운영 · 안정화', value: 'ops' },
-  { label: '교육', value: 'edu' },
-]
+const categories = computed(() => [
+  { label: t('project_category_all'), value: 'all' },
+  { label: t('project_category_rpa'), value: 'rpa' },
+  { label: t('project_category_dev'), value: 'dev' },
+  { label: t('project_category_ops'), value: 'ops' },
+  { label: t('project_category_edu'), value: 'edu' },
+])
 
 const activeCategory = ref('all')
 const query = ref('')
@@ -465,7 +467,7 @@ const projects = ref([
     title: '서버 관리 점검 자동화',
     period: '3개월',
     highlight: '월간 점검 자동화로 안정성 강화',
-    tags: ['운영', '리눅스', 'PuTTY'],
+    tags: ['RPA', '리눅스', 'PuTTY'],
     overview:
       'PuTTY로 서버 접속 후 메모리/네트워크 등 핵심 지표를 명령어로 점검하여 수집·보고까지 자동화.',
     features: ['원격 접속 자동화', '상태 점검 명령 자동 실행', '보고서 생성'],
@@ -578,17 +580,6 @@ const filtered = computed(() => {
   })
   return result
 })
-
-// Keyboard: ⌘K focuses search
-onMounted(() => {
-  window.addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-      e.preventDefault()
-      const el = document.querySelector('input[placeholder^="검색:"]')
-      el && el.focus()
-    }
-  })
-})
 </script>
 
 <template>
@@ -644,12 +635,11 @@ onMounted(() => {
             </div>
           </div>
         </article>
-
-        <div v-if="filtered.length === 0" class="no-results">
+        <!-- <div v-if="filtered.length === 0" class="no-results">
           <div class="no-results-icon">🔍</div>
           <h3>조건에 맞는 프로젝트가 없습니다</h3>
           <p>다른 검색어나 카테고리를 시도해보세요</p>
-        </div>
+        </div> -->
       </main>
     </div>
 
