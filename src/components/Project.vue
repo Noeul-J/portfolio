@@ -4,7 +4,7 @@
   color: #1e293b;
   position: relative;
   overflow: hidden;
-  min-height: 220vh;
+  min-height: 160vh;
   padding: 40px 0;
 }
 

@@ -47,7 +47,7 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
   font-size: 1.125rem;
   color: #475569;
   margin-bottom: 24px;
-  line-height: 1.5;
+  line-height: 2;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;

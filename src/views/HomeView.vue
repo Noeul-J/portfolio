@@ -127,21 +127,9 @@ const showComponent = (menu: string) => {
 
 .content-container {
   width: 100%;
-  max-width: 1440px;
+  max-width: 90%;
   margin: 0 auto;
   padding: 0 16px;
-}
-
-@media (min-width: 1024px) {
-  .content-container {
-    padding: 0 32px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .content-container {
-    padding: 0 48px;
-  }
 }
 
 /* Content Grid */
