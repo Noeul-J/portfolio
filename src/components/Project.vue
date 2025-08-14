@@ -4,7 +4,7 @@
   color: #1e293b;
   position: relative;
   overflow: hidden;
-  min-height: 160vh;
+  min-height: 200vh;
   padding: 40px 0;
 }
 
@@ -198,12 +198,40 @@
 
 .project-period {
   font-size: 0.75rem;
-  color: #64748b;
+  color: #475569;
   white-space: nowrap;
-  padding: 4px 8px;
-  background: #f1f5f9;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+  transition: all 0.3s ease;
+}
+
+.project-period::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-period {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.project-card:hover .project-period::before {
+  opacity: 1;
 }
 
 .project-highlight {
@@ -390,166 +418,210 @@ function closeModal() {
 }
 
 // Project data (요청해 주신 내용 반영)
-const projects = ref([
+const projects = computed(() => [
   {
     id: 'life-insurance-rpa',
     category: 'rpa',
     emoji: '🏦',
-    title: '생명보험사 전사 업무 자동화',
-    period: '2년',
-    highlight: '64개 프로세스 자동화, 연간 00시간 절감',
-    tags: ['RPA', '회계', '계약관리', 'CS'],
+    title: t('project_title_insurance'),
+    period: '2019.07 - 2021.09',
+    highlight: t('project_highlight_insurance'),
+    tags: ['RPA', t('project_tag_Accounting'), t('project_tag_Contract'), 'CS'],
     overview:
-      '생명보험사 전사 RPA를 기획·개발. 회계/영업지원/계약관리/고객서비스 등 64개 프로세스 자동화로 처리 속도·정확성 향상.',
+      t('project_overview_insurance'),
     features: [
-      '제지급계정 일마감 자동화',
-      '변액보험 안내장 검증',
-      '데이터 수집·정합성 검증·보고 자동화',
+      t('project_features_insurance_one'),
+      t('project_features_insurance_two'),
+      t('project_features_insurance_three'),
     ],
-    outcomes: ['연간 00시간 절감', '오류율 감소', '보고 체계 표준화'],
+    outcomes: [t('project_outcomes_insurance_one'), t('project_outcomes_insurance_two'), t('project_outcomes_insurance_three')],
   },
   {
     id: 'distribution-edi-erp',
     category: 'rpa',
     emoji: '🔗',
-    title: '유통업체 EDI 취합·ERP 업로드 자동화',
-    period: '3개월',
-    highlight: '일일 반복 업무 제거, 인건비 절감',
+    title: t('projcet_title_edi'),
+    period: '2021.10 - 2022.02',
+    highlight: t('project_highlight_edi'),
     tags: ['RPA', 'ERP', 'EDI'],
     overview:
-      '거래처별 EDI 데이터를 자동 취합하고 ERP로 업로드. 수작업 제거와 데이터 품질 향상.',
-    features: ['EDI 수집·통합', 'ERP 업로드 포맷 표준화', '정합성 검증·오류 로그'],
-    outcomes: ['인건비 절감', '품질 향상', '업무 연속성 강화'],
+      t('project_overview_edi'),
+    features: [
+      t('project_features_edi_one'),
+      t('project_features_edi_two'),
+      t('project_features_edi_three'),
+    ],
+    outcomes: [t('project_outcomes_edi_one'), t('project_outcomes_edi_two'), t('project_outcomes_edi_three')],
   },
   {
     id: 'manufacturing-voucher',
     category: 'rpa',
     emoji: '🏭',
-    title: '제조업체 입출금 전표 처리 자동화',
-    period: '3개월',
-    highlight: '월 단위 처리 → 일일 분산으로 전환',
-    tags: ['RPA', '전표', '크롤링'],
+    title: t('project_title_manufacturing'),
+    period: '2022.03 - 2022.06',
+    highlight: t('project_highlight_manufacturing'),
+    tags: ['RPA', t('project_tag_voucher'), t('project_tag_crawling')],
     overview:
-      '새벽 스케줄로 데이터 수집·전표 생성·반제처리를 자동화. 카드매출은 카드사 홈페이지에서 크롤링 후 전표 생성.',
-    features: ['새벽 스케줄링', '반제처리 자동화', '카드사 크롤링·전표 생성'],
-    outcomes: ['업무 부하 분산', '정확도 향상', '타 업무 시간 확보'],
+      t('project_overview_manufacturing'),
+    features: [
+      t('project_features_manufacturing_one'),
+      t('project_features_manufacturing_two'),
+      t('project_features_manufacturing_three'),
+    ],
+    outcomes: [t('project_outcomes_manufacturing_one'), t('project_outcomes_manufacturing_two'), t('project_outcomes_manufacturing_three')],
   },
   {
     id: 'covid-notice',
     category: 'rpa',
     emoji: '🦠',
-    title: '코로나19 격리통지서 생성·발송 자동화',
-    period: '3개월',
-    highlight: '대상자 급증 상황에서도 안정적 발송',
-    tags: ['RPA', '문서자동화', '문자발송'],
+    title: t('project_title_covid'),
+    period: '2022.07 - 2022.09',
+    highlight: t('project_highlight_covid'),
+    tags: ['RPA', t('project_tag_document'), t('project_tag_text')],
     overview:
-      '워드 템플릿에 대상자 정보를 자동 반영하고 문자발송 시스템과 연계하여 격리통지서 대량 발송.',
-    features: ['워드 템플릿 자동 작성', '문자발송 시스템 연계', '발송 결과 로그 관리'],
-    outcomes: ['업무 부하 경감', '신속 대응', '품질 일관성 확보'],
+      t('project_overview_covid'),
+    features: [
+      t('project_features_covid_one'),
+      t('project_features_covid_two'),
+      t('project_features_covid_three'),
+    ],
+    outcomes: [t('project_outcomes_covid_one'), t('project_outcomes_covid_two'), t('project_outcomes_covid_three')],
   },
   {
     id: 'energy-invoice',
     category: 'rpa',
     emoji: '⚡️',
-    title: '에너지 발전기별 세금계산서 발행 자동화',
-    period: '3개월',
-    highlight: 'REC/SMP 및 수력발전 데이터 취합·발행',
-    tags: ['RPA', '세금계산서', '인증서'],
+    title: t('project_title_energy'),
+    period: '2022.10 - 2023.02',
+    highlight: t('project_highlight_energy'),
+    tags: ['RPA', t('project_tag_tax'), t('project_tag_cert')],
     overview:
-      '발전기(REC, SMP)별로 관련 사이트에서 데이터를 수집·취합하여 세금계산서를 자동 발행. 공인인증서(USB) 환경 대응.',
-    features: ['다중 사이트 데이터 수집', 'USB 인증서 자동 로그인', '발행 프로세스 자동화'],
-    outcomes: ['정확성·속도 향상', '변동 업체 대응 향상', '무인화로 인력 소모 최소화'],
+      t('project_overview_energy'),
+    features: [
+      t('project_features_energy_one'),
+      t('project_features_energy_two'),
+      t('project_features_energy_three'),
+    ],
+    outcomes: [t('project_outcomes_energy_one'), t('project_outcomes_energy_two'), t('project_outcomes_energy_three')],
   },
   {
     id: 'server-ops',
-    category: 'ops',
+    category: 'rpa',
     emoji: '🖥️',
-    title: '서버 관리 점검 자동화',
-    period: '3개월',
-    highlight: '월간 점검 자동화로 안정성 강화',
-    tags: ['RPA', '리눅스', 'PuTTY'],
+    title: t('project_title_server'),
+    period: '2023.03 - 2023.05',
+    highlight: t('project_highlight_server'),
+    tags: ['RPA', 'linux', 'PuTTY'],
     overview:
-      'PuTTY로 서버 접속 후 메모리/네트워크 등 핵심 지표를 명령어로 점검하여 수집·보고까지 자동화.',
-    features: ['원격 접속 자동화', '상태 점검 명령 자동 실행', '보고서 생성'],
-    outcomes: ['점검 시간 단축', '오류 감소', '안정성 확보'],
+      t('project_overview_server'),
+    features: [
+      t('project_features_server_one'),
+      t('project_features_server_two'),
+      t('project_features_server_three'),
+    ],
+    outcomes: [t('project_outcomes_server_one'), t('project_outcomes_server_two'), t('project_outcomes_server_three')],
   },
   {
     id: 'tax-filing',
     category: 'rpa',
     emoji: '🧾',
-    title: '종합소득세 신고 자동화',
-    period: '2개월',
-    highlight: 'ERP 연계 · wehagoT 전환 대응',
-    tags: ['RPA', '세무', 'HomeTax', 'wehagoT'],
+    title: t('project_title_tax'),
+    period: '2023.06 ~ 2023.07',
+    highlight: t('project_highlight_tax'),
+    tags: ['RPA', t('project_tag_taxation'), 'HomeTax', 'wehagoT'],
     overview:
-      'smartA → wehagoT 전환에 맞춰 프로세스 재설계. ERP 데이터 취합 후 홈택스에 자동 신고. 회계사 협업으로 검증 강화.',
-    features: ['데이터 변환·검증', 'wehagoT 연계', '홈택스 자동 신고'],
-    outcomes: ['정확성·속도 향상', '시스템 전환 대응', '오류 최소화'],
+      t('project_overview_tax'),
+    features: [
+      t('project_features_tax_one'),
+      t('project_features_tax_two'),
+      t('project_features_tax_three'),
+    ],
+    outcomes: [t('project_outcomes_tax_one'), t('project_outcomes_tax_two'), t('project_outcomes_tax_three')],
   },
   {
     id: 'food-inventory',
     category: 'rpa',
     emoji: '🥫',
-    title: '식품유통 재고관리·매출 전표 자동화',
-    period: '4개월',
-    highlight: 'ERP/WMS 연계, 일일 스케줄 운용',
-    tags: ['RPA', 'ERP', 'WMS', '전표'],
+    title: t('project_title_food'),
+    period: '2023.08 ~ 2023.12',
+    highlight: t('project_highlight_food'),
+    tags: ['RPA', 'ERP', 'WMS', t('project_tag_voucher')],
     overview:
-      '일일재고수불·시즌자재 재고관리 자동화. 입출고/판매량 비교, ERP·WMS 연계, 가맹/직영 매출 취합 후 전표 자동 생성.',
-    features: ['재고 지표 자동화', '데이터 정합성 검증', '스케줄 기반 실행'],
-    outcomes: ['정확성·효율성 향상', '수작업 절감', '의사결정 지원'],
+      t('project_overview_food'),
+    features: [
+      t('project_features_food_one'),
+      t('project_features_food_two'),
+      t('project_features_food_three'),
+    ],
+    outcomes: [t('project_outcomes_food_one'), t('project_outcomes_food_two'), t('project_outcomes_food_three')],
   },
   {
     id: 'training',
     category: 'edu',
     emoji: '🎓',
-    title: '신입·파트너 교육 운영 (Worktro)',
-    period: '1년',
-    highlight: '초급/중급 커리큘럼 표준화',
-    tags: ['교육', '커리큘럼', 'Worktro'],
+    title: t('project_title_training'),
+    period: '2023.06 ~ 2024.06',
+    highlight: t('project_highlight_training'),
+    tags: [t('project_tag_edu'), t('project_tag_curriculum'), 'Worktro'],
     overview:
-      'Worktro로 신입·파트너 대상 교육 운영. 초급/중급 과정으로 난이도별 구성, 과제·피드백 제공.',
-    features: ['과정 설계·운영', '맞춤형 커리큘럼', '과제 및 피드백'],
-    outcomes: ['현장 적용성 강화', '적응 기간 단축', '역량 향상'],
+      t('project_overview_training'),
+    features: [
+      t('project_features_training_one'),
+      t('project_features_training_two'),
+      t('project_features_training_three'),
+    ],
+    outcomes: [t('project_outcomes_training_one'), t('project_outcomes_training_two'), t('project_outcomes_training_three')],
   },
   {
     id: 'credit-automation',
     category: 'rpa',
     emoji: '📄',
-    title: '신용평가 전과정 자동화',
-    period: '기간 미기입',
-    highlight: '수신→분류→OCR→검증→의견서 자동화',
+    title: t('project_title_credit'),
+    period: '2024.06 ~ 2024.12',
+    highlight: t('project_highlight_credit'),
     tags: ['RPA', 'OCR', 'ERP', 'BPR'],
     overview:
-      '문서 수신 후 분류, OCR 추출, 항목별 검증/오류 알림, 확정 데이터로 재무제표·의견서 자동 작성. ERP/OCR/BPR 연계.',
-    features: ['자동 분류·OCR', '검증·알림', '재무제표/의견서 생성'],
-    outcomes: ['처리 속도·정확성 향상', '품질 관리 강화', '업무 표준화'],
+      t('project_overview_credit'),
+    features: [
+      t('project_features_credit_one'),
+      t('project_features_credit_two'),
+      t('project_features_credit_three'),
+    ],
+    outcomes: [t('project_outcomes_credit_one'), t('project_outcomes_credit_two'), t('project_outcomes_credit_three')],
   },
   {
     id: 'worktro-vue3',
     category: 'dev',
     emoji: '🎛️',
-    title: 'Worktro UI 개선 · Vue3 마이그레이션',
-    period: '3개월',
-    highlight: 'Vue2 → Vue3, UI/UX 품질 향상',
-    tags: ['Vue3', '프론트엔드', 'UI/UX'],
+    title: t('project_title_worktro'),
+    period: '2025.01 ~ 2025.05',
+    highlight: t('project_highlight_worktro'),
+    tags: ['Vue3', 'frontend', 'UI/UX'],
     overview:
-      '기존 Vue2 화면을 Vue3로 마이그레이션. 디자이너 협업으로 UI/UX 개선, 컴포넌트 구조 최적화.',
-    features: ['마이그레이션', '디자인 반영', '컴포넌트 구조 개선'],
-    outcomes: ['성능·안정성 향상', '유지보수성 강화', '확장성 확보'],
+      t('project_overview_worktro'),
+    features: [
+      t('project_features_worktro_one'),
+      t('project_features_worktro_two'),
+      t('project_features_worktro_three'),
+    ],
+    outcomes: [t('project_outcomes_worktro_one'), t('project_outcomes_worktro_two'), t('project_outcomes_worktro_three')],
   },
   {
     id: 'bot-stabilization',
     category: 'ops',
     emoji: '🤖',
-    title: 'RPA 봇 기능 안정화·운영 대응',
-    period: '기간 미기입',
-    highlight: '모니터링·장애대응·지속개선 체계 구축',
-    tags: ['운영', '모니터링', '알림'],
+    title: t('project_title_workbot'),
+    period: '2025.06 ~ 2025.08',
+    highlight: t('project_highlight_workbot'),
+    tags: [t('project_tag_operation'), t('project_tag_monitoring'), t('project_tag_stability')],
     overview:
-      '실운영 봇의 로그 분석·오류 원인 파악, 모니터링·알림 체계 강화, 요구사항 반영 및 성능 최적화.',
-    features: ['로그 분석', '장애 대응', '기능 개선·최적화'],
-    outcomes: ['가용성 향상', '복구 시간 단축', '만족도 제고'],
+      t('project_overview_workbot'),
+    features: [
+      t('project_features_workbot_one'),
+      t('project_features_workbot_two'),
+      t('project_features_workbot_three'),
+    ],
+    outcomes: [t('project_outcomes_workbot_one'), t('project_outcomes_workbot_two'), t('project_outcomes_workbot_three')],
   },
 ])
 
@@ -619,7 +691,9 @@ const filtered = computed(() => {
           <div class="project-content">
             <div class="project-header">
               <h3 class="project-title">{{ p.title }}</h3>
-              <span class="project-period">{{ p.period }}</span>
+            </div>
+            <div class="project-period">
+              <span>{{ p.period }}</span>
             </div>
             <p class="project-highlight">{{ p.highlight }}</p>
             <div class="project-tags">
@@ -628,7 +702,7 @@ const filtered = computed(() => {
               </span>
             </div>
             <div class="project-action">
-              <span class="view-details">자세히 보기</span>
+              <span class="view-details">{{ t('project_detail_button') }}</span>
               <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
