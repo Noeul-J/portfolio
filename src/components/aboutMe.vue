@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
 const { t } = useI18n()
 
-const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리오%20보고%20연락드립니다'
+const mailTitle = computed(() => t('aboutMe_MailTitle'))
+const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}`)
 </script>
 
 <style scoped>
@@ -239,7 +241,7 @@ const mailto = 'mailto:you@example.com?subject=%5B협업문의%5D%20포트폴리
             <div class="stat-label">{{ t('aboutMe_Automation') }}</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">6 {{ t('aboutMe_Year') }}</div>
+            <div class="stat-number">6+</div>
             <div class="stat-label">{{ t('aboutMe_Experience') }}</div>
           </div>
           <div class="stat-card">

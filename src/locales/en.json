@@ -30,6 +30,7 @@
   "aboutMe_Message": "Do you want to work with me?",
   "aboutMe_ContactMessage": "Let's talk about the project or collaboration you want to do.",
   "aboutMe_ContactButton": "Contact",
+  "aboutMe_MailTitle": "%5BCollaboration%20Inquiry%5D%20Regarding%20Your%20Portfolio",
   "experience_StepOne_descriptionOne": "Development of automation tasks using Worktro and WinAutomation",
   "experience_StepOne_descriptionTwo": "Linking Excel, ERP, WMS systems and processing data",
   "experience_StepOne_descriptionThree": "Data analysis and automatic report generation using Python and VBA",

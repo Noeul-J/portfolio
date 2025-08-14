@@ -31,6 +31,7 @@
   "aboutMe_Message": "함께 일하고 싶으신가요?",
   "aboutMe_ContactMessage": "같이 하고 싶은 프로젝트나 협업에 대해 이야기해보세요",
   "aboutMe_ContactButton": "연락하기",
+  "aboutMe_MailTitle": "%5B협업문의%5D%20포트폴리오%20보고%20연락드립니다",
   "experience_StepOne_descriptionOne": "Worktro, WinAutomation을 활용한 업무 자동화 개발",
   "experience_StepOne_descriptionTwo": "Excel, ERP, WMS 시스템 연동 및 데이터 처리",
   "experience_StepOne_descriptionThree": "Python, VBA를 활용한 데이터 분석 및 보고서 자동 생성",
