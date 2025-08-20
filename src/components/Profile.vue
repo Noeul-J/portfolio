@@ -4,6 +4,56 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 </script>
+
+<template>
+  <section class="profile">
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar">
+              <div class="avatar-placeholder">HJ</div>
+            </div>
+            <div class="profile-info">
+              <h1 class="profile-name">{{ t('hjjung') }}</h1>
+              <p class="profile-title">Software Engineer</p>
+            </div>
+          </div>
+
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div class="contact-text">ggumihj@gmail.com</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📱</div>
+              <div class="contact-text">+82 10-4529-2146</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🔗</div>
+              <div class="contact-text">
+                <a href="https://github.com/Noeul-J" target="_blank" class="contact-link">
+                  github.com/Noeul-J
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-section">
+            <button class="download-btn">
+              <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              {{ t('downloadCV') }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
 <style scoped>
 .profile {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 50%, rgba(241, 245, 249, 0.9) 100%);
@@ -236,55 +286,4 @@ const { t } = useI18n()
   }
 }
 </style>
-
-<template>
-  <section class="profile">
-    <div class="container">
-      <!-- Hero Section -->
-      <div class="hero-section">
-        <div class="profile-card">
-          <div class="profile-header">
-            <div class="profile-avatar">
-              <div class="avatar-placeholder">HJ</div>
-            </div>
-            <div class="profile-info">
-              <h1 class="profile-name">{{ t('hjjung') }}</h1>
-              <p class="profile-title">Full-Stack Developer & RPA Specialist</p>
-            </div>
-          </div>
-
-          <div class="contact-info">
-            <div class="contact-item">
-              <div class="contact-icon">📧</div>
-              <div class="contact-text">ggumihj@gmail.com</div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">📱</div>
-              <div class="contact-text">+82 10-4529-2146</div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">🔗</div>
-              <div class="contact-text">
-                <a href="https://github.com/Noeul-J" target="_blank" class="contact-link">
-                  github.com/Noeul-J
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="action-section">
-            <button class="download-btn">
-              <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-              {{ t('downloadCV') }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
-
-
 

@@ -7,6 +7,50 @@ const mailTitle = computed(() => t('aboutMe_MailTitle'))
 const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}`)
 </script>
 
+<template>
+  <section id="about" class="about">
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <div class="hero-content">
+          <p class="hero-subtitle">
+            {{ t('aboutMe_Content') }}
+          </p>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-number">95+</div>
+            <div class="stat-label">{{ t('aboutMe_Automation') }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">6+</div>
+            <div class="stat-label">{{ t('aboutMe_Experience') }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">{{ t('aboutMe_Project') }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact CTA -->
+      <div class="contact-section">
+        <div class="contact-card">
+          <h2>{{t('aboutMe_Message')}}</h2>
+          <p>{{ t('aboutMe_ContactMessage') }}</p>
+          <a :href="mailto" class="contact-btn">
+            <span>{{ t('aboutMe_ContactButton') }}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
 <style scoped>
 .about {
   min-height: 85vh;
@@ -223,49 +267,3 @@ const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}
   }
 }
 </style>
-
-<template>
-  <section id="about" class="about">
-    <div class="container">
-      <!-- Hero Section -->
-      <div class="hero-section">
-        <div class="hero-content">
-          <p class="hero-subtitle">
-            {{ t('aboutMe_Content') }}
-          </p>
-        </div>
-
-        <div class="hero-stats">
-          <div class="stat-card">
-            <div class="stat-number">95+</div>
-            <div class="stat-label">{{ t('aboutMe_Automation') }}</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">6+</div>
-            <div class="stat-label">{{ t('aboutMe_Experience') }}</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">{{ t('aboutMe_Project') }}</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Contact CTA -->
-      <div class="contact-section">
-        <div class="contact-card">
-          <h2>{{t('aboutMe_Message')}}</h2>
-          <p>{{ t('aboutMe_ContactMessage') }}</p>
-          <a :href="mailto" class="contact-btn">
-            <span>{{ t('aboutMe_ContactButton') }}</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
-
-
