@@ -1,8 +1,17 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import CV from '../assets/CV.pdf'
 
 const { t } = useI18n()
 
+const downloadCV = () => {
+  const link = document.createElement('a')
+  link.href = CV
+  link.download = 'CV.pdf'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
 </script>
 
 <template>
@@ -41,7 +50,7 @@ const { t } = useI18n()
           </div>
 
           <div class="action-section">
-            <button class="download-btn">
+            <button class="download-btn" @click="downloadCV">
               <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
               </svg>
@@ -58,8 +67,8 @@ const { t } = useI18n()
 .profile {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 50%, rgba(241, 245, 249, 0.9) 100%);
   color: #1e293b;
-  min-height: 100vh;
-  padding: 80px 0;
+  min-height: 80vh;
+  padding: 40px 0;
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
@@ -91,6 +100,8 @@ const { t } = useI18n()
   justify-content: center;
   align-items: center;
   animation: fadeInUp 1s ease-out;
+  min-height: calc(100vh - 160px);
+  padding: 20px 0;
 }
 
 .profile-card {
@@ -220,19 +231,38 @@ const { t } = useI18n()
   text-align: center;
 }
 
-.download-btn:hover {
+.download-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
 }
 
+.download-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .download-icon {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   transition: transform 0.3s ease;
 }
 
 .download-btn:hover .download-icon {
   transform: translateY(-2px);
+}
+
+.download-btn:disabled .download-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Animations */
@@ -247,8 +277,24 @@ const { t } = useI18n()
   }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+
+.profile-card {
+  transform-origin: center center;
+}
+
+/* @media (min-width: 1200px) {
+  .profile-card {
+    transform: scale(1.25);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .profile-card {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 767px) {
   .profile {
     padding: 60px 0;
   }
@@ -258,32 +304,20 @@ const { t } = useI18n()
   }
   
   .profile-card {
-    padding: 32px 24px;
-  }
-  
-  .profile-name {
-    font-size: 1.75rem;
+    transform: scale(1);
   }
 }
 
 @media (max-width: 480px) {
   .profile-card {
-    padding: 24px 16px;
-  }
-  
-  .avatar-placeholder {
-    width: 60px;
-    height: 60px;
-    font-size: 1.25rem;
-  }
-  
-  .profile-name {
-    font-size: 1.5rem;
-  }
-  
-  .profile-title {
-    font-size: 1rem;
+    transform: scale(0.9);
   }
 }
+
+@media (max-width: 360px) {
+  .profile-card {
+    transform: scale(0.8);
+  }
+} */
 </style>
 

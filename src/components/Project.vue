@@ -611,7 +611,7 @@ const projects = computed(() => [
     category: 'ops',
     emoji: '🤖',
     title: t('project_title_workbot'),
-    period: '2025.06 ~ 2025.08',
+    period: '2025.06 ~ Present',
     highlight: t('project_highlight_workbot'),
     tags: [t('project_tag_operation'), t('project_tag_monitoring'), t('project_tag_stability')],
     overview:

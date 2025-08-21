@@ -76,7 +76,7 @@ const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0px 40px;
   position: relative;
   z-index: 1;
   width: 100%;
@@ -234,7 +234,7 @@ const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}
 /* Responsive Design */
 @media (max-width: 768px) {
   .about {
-    padding: 30px 0;
+    padding: 80px 0;
     min-height: 50vh;
   }
   

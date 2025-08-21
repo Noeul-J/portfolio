@@ -21,7 +21,7 @@ const showComponent = (menu: string) => {
 <style scoped>
 /* App Container */
 .app-container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -211,7 +211,7 @@ const showComponent = (menu: string) => {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .nav-container {
     padding: 0 12px;
   }
@@ -236,7 +236,7 @@ const showComponent = (menu: string) => {
   .main-content {
     padding-top: 72px;
   }
-}
+} */
 </style>
 
 <template>
