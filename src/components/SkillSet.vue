@@ -1,3 +1,180 @@
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
+// GitHub 사용자명 (여기에 본인의 GitHub 사용자명을 입력하세요)
+const githubUsername = 'Noeul-J'
+
+// GitHub 잔디표 데이터
+const contributionData = ref<any[]>([])
+const loading = ref(true)
+const error = ref('')
+
+// 실제 GitHub GraphQL API를 사용하여 잔디표 데이터 가져오기
+const fetchGitHubContributions = async () => {
+  try {
+    loading.value = true
+    error.value = ''
+
+    const apiUrl = import.meta.env.VITE_GITHUB_API_URL || 'https://api.github.com/graphql';
+    const apiToken = import.meta.env.VITE_GITHUB_TOKEN;
+    
+    // 디버깅을 위한 로그 (개발 환경에서만)
+    if (import.meta.env.DEV) {
+      console.log('API URL:', apiUrl);
+      console.log('Token exists:', !!apiToken);
+      console.log('Token length:', apiToken ? apiToken.length : 0);
+    }
+    
+    // 토큰이 없으면 에러 처리
+    if (!apiToken) {
+      throw new Error('GitHub 토큰이 설정되지 않았습니다. 환경변수 VITE_GITHUB_TOKEN을 확인해주세요.');
+    }
+   
+    // GitHub GraphQL API 사용 (실제 잔디표 데이터)
+    const response = await axios.post(apiUrl, {
+      query: `
+        query {
+          user(login: "${githubUsername}") {
+            contributionsCollection {
+              contributionCalendar {
+                totalContributions
+                weeks {
+                  contributionDays {
+                    contributionCount
+                    date
+                  }
+                }
+              }
+            }
+          }
+        }
+      `
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiToken}`,
+      },
+    })
+
+    if (response.status !== 200) {
+      throw new Error('GitHub GraphQL API 요청 실패')
+    }
+
+    const data = response.data
+    
+    if (data.errors) {
+      throw new Error(data.errors[0].message)
+    }
+    
+    // 실제 잔디표 데이터 처리
+    const contributions = processContributionData(data.data.user.contributionsCollection.contributionCalendar)
+    contributionData.value = contributions
+    
+  } catch (err: any) {
+    console.error('GitHub 데이터 가져오기 실패:', err)
+    
+    // 401 오류인 경우 특별한 메시지 표시
+    if (err.response?.status === 401) {
+      error.value = 'GitHub 인증에 실패했습니다. 토큰이 올바른지 확인해주세요.'
+    } else if (err.response?.status === 403) {
+      error.value = 'GitHub API 요청 한도를 초과했습니다. 잠시 후 다시 시도해주세요.'
+    } else if (err.response?.status === 404) {
+      error.value = 'GitHub 사용자를 찾을 수 없습니다. 사용자명을 확인해주세요.'
+    } else {
+      error.value = err.message || '데이터를 가져오는데 실패했습니다.'
+    }
+  } finally {
+    loading.value = false
+  }
+}
+
+// GitHub 잔디표 데이터 처리 (실제 Contribution Graph 데이터)
+const processContributionData = (contributionCalendar: any) => {
+  const contributions: any[] = []
+  
+  // 모든 주의 데이터를 평면화
+  contributionCalendar.weeks.forEach((week: any) => {
+    week.contributionDays.forEach((day: any) => {
+      contributions.push({
+        date: day.date,
+        count: day.contributionCount
+      })
+    })
+  })
+  
+  // 최근 6개월 데이터만 필터링
+  const now = new Date()
+  const sixMonthsAgo = new Date(now)
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6)
+  
+  const filteredContributions = contributions.filter(contribution => {
+    const contributionDate = new Date(contribution.date)
+    return contributionDate >= sixMonthsAgo
+  })
+  
+  // 7행 x 26열로 재구성 (GitHub 실제 구조와 동일하게)
+  const reorganizedContributions: any[] = []
+  const totalCells = 7 * 26 // 182개 셀
+  
+  // 6개월 데이터를 182개 셀로 맞추기 (최근 데이터가 오른쪽에 오도록)
+  const startIndex = Math.max(0, filteredContributions.length - totalCells)
+  const dataToUse = filteredContributions.slice(startIndex)
+  
+  // GitHub 실제 구조: 각 열은 한 주, 각 행은 요일
+  // 왼쪽에서 오른쪽으로 시간이 흐르고, 위에서 아래로 요일이 진행
+  for (let row = 0; row < 7; row++) {
+    for (let col = 0; col < 26; col++) {
+      const index = col * 7 + row
+      if (index < dataToUse.length) {
+        reorganizedContributions.push(dataToUse[index])
+      } else {
+        // 빈 셀 추가 (왼쪽에 빈 공간)
+        reorganizedContributions.push({
+          date: '',
+          count: 0
+        })
+      }
+    }
+  }
+  
+  return reorganizedContributions
+}
+
+// 우주 컨셉 색상 매핑 (네온 우주 테마)
+const getContributionClass = (count: number) => {
+  if (count === 0) return 'bg-[#aaa1a1]'
+  if (count <= 3) return 'bg-[#3b82f0]'
+  if (count <= 6) return 'bg-[#1f3a8c]' 
+  if (count <= 9) return 'bg-[#8b5cf8]'
+  return 'bg-[#ef4444]'
+}
+
+const getContributionTooltip = (date: string, count: number | null) => {
+  const dateObj = new Date(date)
+  const formattedDate = dateObj.toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+  
+  if (count === null) {
+    return `${formattedDate}: 데이터 없음`
+  } else if (count === 0) {
+    return `${formattedDate}: 기여 없음`
+  } else if (count === 1) {
+    return `${formattedDate}: 1개의 기여`
+  } else {
+    return `${formattedDate}: ${count}개의 기여`
+  }
+}
+
+// 컴포넌트 마운트 시 실제 GitHub 데이터 가져오기
+onMounted(() => {
+  fetchGitHubContributions()
+})
+</script>
+
 <template>
   <section class="skills">
   <div class="container">
@@ -147,7 +324,10 @@
         </div>
       </div>
      
-             <!-- GitHub Contribution Graph -->
+             <!-- 환경변수 디버거 (개발 환경에서만 표시) -->
+      <EnvDebugger />
+      
+      <!-- GitHub Contribution Graph -->
        <div class="github-section">
         <h3 class="github-title">GitHub Activity</h3>
         <div class="github-container">
@@ -190,158 +370,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
 
-// GitHub 사용자명 (여기에 본인의 GitHub 사용자명을 입력하세요)
-const githubUsername = 'Noeul-J'
-
-// GitHub 잔디표 데이터
-const contributionData = ref<any[]>([])
-const loading = ref(true)
-const error = ref('')
-
-// 실제 GitHub GraphQL API를 사용하여 잔디표 데이터 가져오기
-const fetchGitHubContributions = async () => {
-  try {
-    loading.value = true
-    error.value = ''
-    
-    // GitHub GraphQL API 사용 (실제 잔디표 데이터)
-    const response = await fetch('https://api.github.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${import.meta.env.VITE_GITHUB_TOKEN || ''}`,
-      },
-      body: JSON.stringify({
-        query: `
-          query {
-            user(login: "${githubUsername}") {
-              contributionsCollection {
-                contributionCalendar {
-                  totalContributions
-                  weeks {
-                    contributionDays {
-                      contributionCount
-                      date
-                    }
-                  }
-                }
-              }
-            }
-          }
-        `
-      })
-    })
-
-    if (!response.ok) {
-      throw new Error('GitHub GraphQL API 요청 실패')
-    }
-
-    const data = await response.json()
-    
-    if (data.errors) {
-      throw new Error(data.errors[0].message)
-    }
-    
-    // 실제 잔디표 데이터 처리
-    const contributions = processContributionData(data.data.user.contributionsCollection.contributionCalendar)
-    contributionData.value = contributions
-    
-  } catch (err: any) {
-    console.error('GitHub 데이터 가져오기 실패:', err)
-    error.value = err.message || '데이터를 가져오는데 실패했습니다.'
-  } finally {
-    loading.value = false
-  }
-}
-
-// GitHub 잔디표 데이터 처리 (실제 Contribution Graph 데이터)
-const processContributionData = (contributionCalendar: any) => {
-  const contributions: any[] = []
-  
-  // 모든 주의 데이터를 평면화
-  contributionCalendar.weeks.forEach((week: any) => {
-    week.contributionDays.forEach((day: any) => {
-      contributions.push({
-        date: day.date,
-        count: day.contributionCount
-      })
-    })
-  })
-  
-  // 최근 6개월 데이터만 필터링
-  const now = new Date()
-  const sixMonthsAgo = new Date(now)
-  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6)
-  
-  const filteredContributions = contributions.filter(contribution => {
-    const contributionDate = new Date(contribution.date)
-    return contributionDate >= sixMonthsAgo
-  })
-  
-  // 7행 x 26열로 재구성 (GitHub 실제 구조와 동일하게)
-  const reorganizedContributions: any[] = []
-  const totalCells = 7 * 26 // 182개 셀
-  
-  // 6개월 데이터를 182개 셀로 맞추기 (최근 데이터가 오른쪽에 오도록)
-  const startIndex = Math.max(0, filteredContributions.length - totalCells)
-  const dataToUse = filteredContributions.slice(startIndex)
-  
-  // GitHub 실제 구조: 각 열은 한 주, 각 행은 요일
-  // 왼쪽에서 오른쪽으로 시간이 흐르고, 위에서 아래로 요일이 진행
-  for (let row = 0; row < 7; row++) {
-    for (let col = 0; col < 26; col++) {
-      const index = col * 7 + row
-      if (index < dataToUse.length) {
-        reorganizedContributions.push(dataToUse[index])
-      } else {
-        // 빈 셀 추가 (왼쪽에 빈 공간)
-        reorganizedContributions.push({
-          date: '',
-          count: 0
-        })
-      }
-    }
-  }
-  
-  return reorganizedContributions
-}
-
-// 우주 컨셉 색상 매핑 (네온 우주 테마)
-const getContributionClass = (count: number) => {
-  if (count === 0) return 'bg-[#aaa1a1]'
-  if (count <= 3) return 'bg-[#3b82f0]'
-  if (count <= 6) return 'bg-[#1f3a8c]' 
-  if (count <= 9) return 'bg-[#8b5cf8]'
-  return 'bg-[#ef4444]'
-}
-
-const getContributionTooltip = (date: string, count: number | null) => {
-  const dateObj = new Date(date)
-  const formattedDate = dateObj.toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-  
-  if (count === null) {
-    return `${formattedDate}: 데이터 없음`
-  } else if (count === 0) {
-    return `${formattedDate}: 기여 없음`
-  } else if (count === 1) {
-    return `${formattedDate}: 1개의 기여`
-  } else {
-    return `${formattedDate}: ${count}개의 기여`
-  }
-}
-
-// 컴포넌트 마운트 시 실제 GitHub 데이터 가져오기
-onMounted(() => {
-  fetchGitHubContributions()
-})
-</script>
 
 <style scoped>
 .skills {
