@@ -7,7 +7,7 @@ const { t } = useI18n()
 const downloadCV = () => {
   const link = document.createElement('a')
   link.href = CV
-  link.download = 'CV.pdf'
+  link.download = 'CV_hjjung.pdf'
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
