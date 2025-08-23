@@ -26,7 +26,7 @@ const downloadCV = () => {
             </div>
             <div class="profile-info">
               <h1 class="profile-name">{{ t('hjjung') }}</h1>
-              <p class="profile-title">Software Engineer</p>
+              <p class="profile-title">Full Stack Engineer</p>
             </div>
           </div>
 
