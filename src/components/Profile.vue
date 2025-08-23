@@ -186,8 +186,13 @@ const downloadCV = () => {
 }
 
 .contact-icon {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-text {
@@ -214,7 +219,7 @@ const downloadCV = () => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 5px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 16px 40px;
@@ -243,8 +248,8 @@ const downloadCV = () => {
 }
 
 .download-icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   transition: transform 0.3s ease;
 }
 

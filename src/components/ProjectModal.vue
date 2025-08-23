@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useProjectStore } from '../store'
+
 interface Project {
   id: string;
   category: string;
@@ -23,6 +27,10 @@ const emit = defineEmits<{
   close: [];
 }>();
 
+const { t } = useI18n();
+const { getProjects } = useProjectStore();
+const projects = getProjects(t);
+
 function categoryLabel(v: string) {
   const f = props.categories.find((c) => c.value === v);
   return f ? f.label : v;
@@ -31,43 +39,49 @@ function categoryLabel(v: string) {
 function closeModal() {
   emit('close');
 }
+
+// 현재 활성화된 프로젝트를 스토어에서 가져오기
+const currentProject = computed(() => {
+  if (!props.active?.id) return null;
+  return projects.value.find(p => p.id === props.active?.id);
+});
 </script>
 
 <template>
   <!-- Modal -->
   <transition name="modal">
-    <div v-if="active" class="modal-overlay" @click="closeModal">
+    <div v-if="currentProject" class="modal-overlay" @click="closeModal">
       <div class="modal-content" @click.stop>
         <div class="modal-header">
-          <div class="modal-emoji">{{ active.emoji }}</div>
+          <div class="modal-emoji">{{ currentProject.emoji }}</div>
           <div class="modal-info">
-            <h3 class="modal-title">{{ active.title }}</h3>
+            <h3 class="modal-title">{{ currentProject.title }}</h3>
             <p class="modal-meta">
-              {{ categoryLabel(active.category) }} · {{ active.period }}
+              {{ categoryLabel(currentProject.category) }} · {{ currentProject.period }}
             </p>
           </div>
           <button class="modal-close" @click="closeModal">✕</button>
         </div>
 
         <div class="modal-body">
-          <p class="modal-overview">{{ active.overview }}</p>
+          <p class="modal-overview">{{ currentProject.overview }}</p>
 
           <section class="modal-section">
             <h4 class="section-title">주요 기능 / 활동</h4>
             <ul class="feature-list">
-              <li v-for="(f,i) in active.features" :key="i">{{ f }}</li>
+              <li v-for="(f,i) in currentProject.features" :key="i">{{ f }}</li>
             </ul>
           </section>
 
           <section class="modal-section">
             <h4 class="section-title">성과</h4>
             <ul class="outcome-list">
-              <li v-for="(o,i) in active.outcomes" :key="i">{{ o }}</li>
+              <li v-for="(o,i) in currentProject.outcomes" :key="i">{{ o }}</li>
             </ul>
           </section>
 
           <div class="modal-tags">
-            <span v-for="tag in active.tags" :key="tag" class="modal-tag">
+            <span v-for="tag in currentProject.tags" :key="tag" class="modal-tag">
               #{{ tag }}
             </span>
           </div>
@@ -229,32 +243,118 @@ function closeModal() {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .modal-overlay {
+    padding: 10px;
+  }
+  
+  .modal-content {
+    max-height: 85vh;
+  }
+  
   .modal-header {
-    padding: 24px 24px 0;
+    padding: 20px 20px 0;
   }
   
   .modal-body {
-    padding: 24px;
+    padding: 20px;
   }
   
   .modal-emoji {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .modal-title {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
+  }
+  
+  .modal-overview {
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 0.9rem;
+  }
+  
+  .feature-list li,
+  .outcome-list li {
+    font-size: 0.85rem;
+    padding: 6px 0;
+    padding-left: 16px;
+  }
+  
+  .modal-tag {
+    font-size: 0.7rem;
+    padding: 4px 8px;
   }
 }
 
 @media (max-width: 480px) {
+  .modal-overlay {
+    padding: 5px;
+  }
+  
+  .modal-content {
+    max-height: 80vh;
+  }
+  
   .modal-header {
     flex-direction: column;
     text-align: center;
-    gap: 12px;
+    gap: 8px;
+    padding: 16px 16px 0;
   }
   
   .modal-emoji {
     align-self: center;
+    font-size: 1.75rem;
+  }
+  
+  .modal-title {
+    font-size: 1rem;
+  }
+  
+  .modal-meta {
+    font-size: 0.8rem;
+  }
+  
+  .modal-body {
+    padding: 16px;
+  }
+  
+  .modal-overview {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+  
+  .modal-section {
+    margin-bottom: 16px;
+  }
+  
+  .section-title {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+  
+  .feature-list li,
+  .outcome-list li {
+    font-size: 0.8rem;
+    padding: 4px 0;
+    padding-left: 12px;
+  }
+  
+  .modal-tags {
+    gap: 6px;
+    margin-top: 16px;
+  }
+  
+  .modal-tag {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+  
+  .modal-close {
+    font-size: 1.25rem;
+    padding: 6px;
   }
 }
 </style>

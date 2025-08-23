@@ -115,11 +115,7 @@ const { t } = useI18n()
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
   color: #1e293b;
   position: relative;
-  overflow: hidden;
-  min-height: 85vh;
-  display: flex;
-  align-items: flex-start;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .experience::before {
@@ -139,10 +135,11 @@ const { t } = useI18n()
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
   position: relative;
   z-index: 1;
   width: 100%;
+  transform: scale(0.9);
 }
 
 /* Section Header */
@@ -379,15 +376,45 @@ const { t } = useI18n()
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .experience {
+    padding: 15px 0 80px 0;
+    min-height: auto;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .section-title {
+    font-size: 2.25rem;
+  }
+  
   .timeline {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 24px;
+  }
+  
+  .timeline-content {
+    padding: 24px;
+  }
+  
+  .company-name {
+    font-size: 1.375rem;
+  }
+  
+  .timeline-period {
+    font-size: 0.9rem;
+  }
+  
+  .achievement-text {
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 768px) {
   .experience {
-    padding: 60px 0;
+    padding: 10px 0 60px 0;
+    min-height: auto;
   }
   
   .container {
@@ -395,20 +422,20 @@ const { t } = useI18n()
   }
   
   .section-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
   .timeline {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
   
   /* Vertical timeline for mobile */
   .timeline::before {
     top: 0;
-    left: 20px;
+    left: 15px;
     right: auto;
-    width: 3px;
+    width: 2px;
     height: 100%;
     background: linear-gradient(180deg, #3b82f6, #8b5cf6, #06b6d4);
     transform: none;
@@ -416,27 +443,29 @@ const { t } = useI18n()
   
   .timeline-marker {
     text-align: left;
-    margin-left: 20px;
+    margin-left: 15px;
     height: auto;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
   
   .marker-dot {
     margin: 0;
     position: absolute;
-    left: -10px;
+    left: -7px;
     top: 50%;
     transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
   }
   
   .timeline-item:hover .marker-dot {
-    transform: translateY(-50%) scale(1.3);
+    transform: translateY(-50%) scale(1.2);
   }
   
   .timeline-content {
-    padding: 24px;
+    padding: 20px;
     margin-top: 0;
-    margin-left: 40px;
+    margin-left: 30px;
   }
   
   .timeline-header {
@@ -446,11 +475,11 @@ const { t } = useI18n()
   .timeline-company {
     flex-direction: row;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
   }
   
   .company-name {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
   
   .company-name::after {
@@ -459,54 +488,86 @@ const { t } = useI18n()
   }
   
   .achievement-item {
-    padding: 12px;
+    padding: 10px;
   }
   
   .achievement-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+  }
+  
+  .achievement-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
+  .experience {
+    padding: 8px 0 50px 0;
+  }
+  
+  .container {
+    padding: 0 12px;
+  }
+  
   .section-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
   
   .timeline {
-    gap: 16px;
+    gap: 12px;
   }
   
   .timeline::before {
-    left: 15px;
+    left: 12px;
   }
   
   .timeline-marker {
-    margin-left: 15px;
+    margin-left: 12px;
   }
   
   .marker-dot {
-    left: -7.5px;
+    left: -6px;
+    width: 14px;
+    height: 14px;
   }
   
   .timeline-content {
-    padding: 20px;
-    margin-left: 30px;
+    padding: 16px;
+    margin-left: 24px;
   }
   
   .achievement-item {
     flex-direction: column;
     text-align: center;
-    gap: 8px;
+    gap: 6px;
+    padding: 8px;
   }
   
   .achievement-icon {
     align-self: center;
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+  }
+  
+  .achievement-text {
+    font-size: 0.8rem;
   }
   
   .timeline-company {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+  
+  .company-name {
+    font-size: 1rem;
+  }
+  
+  .position {
+    font-size: 0.9rem;
   }
 }
 </style>

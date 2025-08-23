@@ -18,6 +18,102 @@ const showComponent = (menu: string) => {
 }
 </script>
 
+
+
+<template>
+  <div class="app-container">
+    <!-- Top Navigation Bar -->
+    <div class="navigation-bar">
+      <div class="nav-container">
+        <div class="nav-content">
+          <!-- Logo/Title -->
+          <div class="logo">
+            Portfolio
+          </div>
+          
+          <!-- Navigation Menu -->
+          <div class="nav-menu">
+            <div class="menu-container">
+              <ul class="menu-list">
+                <li>
+                  <button 
+                    @click="showComponent('AboutMe')" 
+                    :class="activeMenu === 'AboutMe' ? 'menu-btn active' : 'menu-btn'"
+                  >
+                    {{ t('aboutMe') }}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    @click="showComponent('Skill')" 
+                    :class="activeMenu === 'Skill' ? 'menu-btn active' : 'menu-btn'"
+                  >
+                    {{ t('skills') }}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    @click="showComponent('Experience')" 
+                    :class="activeMenu === 'Experience' ? 'menu-btn active' : 'menu-btn'"
+                  >
+                    {{ t('experience') }}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    @click="showComponent('Project')" 
+                    :class="activeMenu === 'Project' ? 'menu-btn active' : 'menu-btn'"
+                  >
+                    {{ t('projects') }}
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
+            <!-- Language Toggle -->
+            <LanguageToggle />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="content-container">
+        <!-- Content Area -->
+        <div class="content-grid">
+          <!-- Left Column: Profile Info -->
+          <div class="left-column">
+            <Profile />
+          </div>
+          
+          <!-- Right Column: Content -->
+          <div class="right-column">
+            <!-- Content Area -->
+            <div class="content-wrapper">
+              <div class="content-scroll">
+                <!-- About Section -->
+                <AboutMe v-if="activeMenu === 'AboutMe'" />
+                
+                <!-- Skills Section -->
+                <SkillSet v-else-if="activeMenu === 'Skill'" />
+                
+                <!-- Experience Section -->
+                <Experience v-else-if="activeMenu === 'Experience'" />
+                
+                <!-- Projects Section -->
+                <Project v-else-if="activeMenu === 'Project'" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <Footer />
+  </div>
+</template>
+
 <style scoped>
 /* App Container */
 .app-container {
@@ -130,11 +226,18 @@ const showComponent = (menu: string) => {
   padding-top: 80px;
 }
 
+@media (max-width: 1024px) {
+  .main-content {
+    padding-top: 70px;
+  }
+}
+
 .content-container {
   width: 100%;
   max-width: 90%;
   margin: 0 auto;
   padding: 0 16px;
+  min-height: 98vh;
 }
 
 /* Content Grid */
@@ -142,6 +245,14 @@ const showComponent = (menu: string) => {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
+  min-height: calc(100vh - 140px);
+}
+
+@media (min-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -165,7 +276,7 @@ const showComponent = (menu: string) => {
 
 /* Left Column */
 .left-column {
-  order: 2;
+  order: 1;
 }
 
 @media (min-width: 1024px) {
@@ -178,12 +289,13 @@ const showComponent = (menu: string) => {
 
 /* Right Column */
 .right-column {
-  order: 1;
+  order: 2;
 }
 
 @media (min-width: 1024px) {
   .right-column {
     order: 2;
+    /* transform: scale(0.9); */
   }
 }
 
@@ -194,24 +306,66 @@ const showComponent = (menu: string) => {
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  height: 92vh;
   overflow: hidden;
 }
 
 .content-scroll {
-  height: calc(100vh - 120px);
+  height: calc(100vh - 60px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
   .content-scroll {
-    height: calc(100vh - 140px);
+    height: calc(100vh - 60px);
   }
 }
 
 /* Responsive Design */
-/* @media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 0 16px;
+  }
+  
+  .content-container {
+    padding: 0 16px;
+  }
+  
+  .nav-content {
+    height: 60px;
+  }
+  
+  .logo {
+    font-size: 1.25rem;
+  }
+  
+  .menu-btn {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+  
+  .main-content {
+    padding-top: 80px;
+  }
+  
+  .content-grid {
+    min-height: auto;
+  }
+  
+  .content-wrapper {
+    height: auto;
+    min-height: 70vh;
+  }
+  
+  .content-scroll {
+    height: auto;
+    min-height: 60vh;
+  }
+}
+
+@media (max-width: 768px) {
   .nav-container {
     padding: 0 12px;
   }
@@ -236,100 +390,48 @@ const showComponent = (menu: string) => {
   .main-content {
     padding-top: 72px;
   }
-} */
+  
+  .content-wrapper {
+    min-height: 60vh;
+  }
+  
+  .content-scroll {
+    min-height: 50vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 8px;
+  }
+  
+  .content-container {
+    padding: 0 8px;
+  }
+  
+  .nav-content {
+    height: 48px;
+  }
+  
+  .logo {
+    font-size: 1rem;
+  }
+  
+  .menu-btn {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+  
+  .main-content {
+    padding-top: 60px;
+  }
+  
+  .content-wrapper {
+    min-height: 50vh;
+  }
+  
+  .content-scroll {
+    min-height: 40vh;
+  }
+}
 </style>
-
-<template>
-  <div class="app-container">
-    <!-- Top Navigation Bar -->
-    <div class="navigation-bar">
-      <div class="nav-container">
-        <div class="nav-content">
-          <!-- Logo/Title -->
-          <div class="logo">
-            Portfolio
-          </div>
-          
-          <!-- Navigation Menu -->
-          <div class="nav-menu">
-            <div class="menu-container">
-              <ul class="menu-list">
-                <li>
-                  <button 
-                    @click="showComponent('AboutMe')" 
-                    :class="activeMenu === 'AboutMe' ? 'menu-btn active' : 'menu-btn'"
-                  >
-                    {{ t('aboutMe') }}
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    @click="showComponent('Skill')" 
-                    :class="activeMenu === 'Skill' ? 'menu-btn active' : 'menu-btn'"
-                  >
-                    {{ t('skills') }}
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    @click="showComponent('Experience')" 
-                    :class="activeMenu === 'Experience' ? 'menu-btn active' : 'menu-btn'"
-                  >
-                    {{ t('experience') }}
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    @click="showComponent('Project')" 
-                    :class="activeMenu === 'Project' ? 'menu-btn active' : 'menu-btn'"
-                  >
-                    {{ t('projects') }}
-                  </button>
-                </li>
-              </ul>
-            </div>
-            
-            <!-- Language Toggle -->
-            <LanguageToggle />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-      <div class="content-container">
-        <!-- Content Area -->
-        <div class="content-grid">
-          <!-- Left Column: Profile Info -->
-          <div class="left-column">
-            <Profile />
-          </div>
-          
-          <!-- Right Column: Content -->
-          <div class="right-column">
-            <!-- Content Area -->
-            <div class="content-wrapper">
-              <div class="content-scroll">
-                <!-- About Section -->
-                <AboutMe v-if="activeMenu === 'AboutMe'" />
-                
-                <!-- Skills Section -->
-                <SkillSet v-else-if="activeMenu === 'Skill'" />
-                
-                <!-- Experience Section -->
-                <Experience v-else-if="activeMenu === 'Experience'" />
-                
-                <!-- Projects Section -->
-                <Project v-else-if="activeMenu === 'Project'" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <Footer />
-  </div>
-</template>
-

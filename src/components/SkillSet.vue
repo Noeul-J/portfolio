@@ -323,9 +323,6 @@ onMounted(() => {
           </div>
         </div>
       </div>
-     
-             <!-- 환경변수 디버거 (개발 환경에서만 표시) -->
-      <EnvDebugger />
       
       <!-- GitHub Contribution Graph -->
        <div class="github-section">
@@ -405,6 +402,7 @@ onMounted(() => {
   position: relative;
   z-index: 1;
   width: 100%;
+  transform: scale(0.9);
 }
 
 /* Skills Grid */
@@ -577,6 +575,7 @@ onMounted(() => {
   max-width: 700px;
   margin: 0 auto;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
 }
 
 /* Loading & Error States */
@@ -621,6 +620,8 @@ onMounted(() => {
   background: #ffffff;
   border-radius: 10px;
   border: 1px solid #e2e8f0;
+  overflow-x: auto;
+  min-width: 0;
 }
 
 .contribution-cell {
@@ -642,7 +643,7 @@ onMounted(() => {
 }
 
 .bg-medium {
-  background-color: #3b82f6;
+  background-color: #3b82f0;
 }
 
 .bg-dark {
@@ -681,10 +682,85 @@ onMounted(() => {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .skills {
+    padding: 40px 0 60px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .skill-category {
+    padding: 20px;
+  }
+  
+  .skill-title {
+    font-size: 1.25rem;
+  }
+  
+  .skill-item {
+    padding: 12px 16px;
+  }
+  
+  .skill-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .skill-name {
+    font-size: 1rem;
+  }
+  
+  .github-section {
+    padding: 24px;
+  }
+  
+  .github-container {
+    padding: 20px;
+    overflow-x: auto;
+  }
+  
+  .github-title {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+  }
+  
+  .contribution-grid {
+    min-width: 500px;
+    overflow-x: auto;
+  }
+  
+  .contribution-cell {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+  }
+  
+  .legend-color {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .contribution-legend {
+    font-size: 0.8rem;
+    gap: 16px;
+  }
+}
+
 @media (max-width: 768px) {
   .skills {
-    padding: 30px 0;
-    min-height: 50vh;
+    padding: 30px 0 50px 0;
   }
   
   .container {
@@ -694,61 +770,156 @@ onMounted(() => {
   .skills-grid {
     grid-template-columns: 1fr;
     gap: 16px;
-    margin-bottom: 30px;
   }
   
   .skill-category {
-    padding: 20px;
+    padding: 16px;
+  }
+  
+  .skill-title {
+    font-size: 1.125rem;
+  }
+  
+  .skill-item {
+    padding: 10px 12px;
+  }
+  
+  .skill-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .skill-name {
+    font-size: 0.9rem;
   }
   
   .github-section {
-    padding: 24px;
-  }
-  
-  .github-container {
     padding: 20px;
   }
   
+  .github-container {
+    padding: 16px;
+    overflow-x: auto;
+  }
+  
+  .github-title {
+    font-size: 1.125rem;
+    margin-bottom: 16px;
+  }
+  
   .contribution-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-;
-    padding: 12px;
+    min-width: 400px;
+    overflow-x: auto;
   }
   
   .contribution-cell {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
   }
   
   .legend-color {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
+  }
+  
+  .contribution-legend {
+    font-size: 0.75rem;
+    gap: 12px;
   }
 }
 
 @media (max-width: 480px) {
+  .skills {
+    padding: 20px 0 40px 0;
+  }
+  
+  .container {
+    padding: 0 12px;
+  }
+  
   .skills-grid {
-    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .skill-category {
+    padding: 12px;
+  }
+  
+  .skill-title {
+    font-size: 1rem;
   }
   
   .skill-item {
     flex-direction: column;
     text-align: center;
     gap: 8px;
-    padding: 16px;
+    padding: 12px;
   }
   
   .skill-icon {
     align-self: center;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .skill-name {
+    font-size: 0.85rem;
+  }
+  
+  .github-section {
+    padding: 16px;
+  }
+  
+  .github-container {
+    padding: 12px;
+    overflow-x: auto;
+  }
+  
+  .github-title {
+    font-size: 1rem;
+    margin-bottom: 12px;
   }
   
   .contribution-grid {
-    grid-template-columns: repeat(15, 1fr);
+    min-width: 350px;
+    overflow-x: auto;
+  }
+  
+  .contribution-cell {
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+  }
+  
+  .legend-color {
+    width: 10px;
+    height: 10px;
   }
   
   .contribution-legend {
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    font-size: 0.7rem;
+  }
+  
+  .loading-text,
+  .error-message {
+    font-size: 0.9rem;
+  }
+  
+  .error-detail {
+    font-size: 0.8rem;
   }
 }
 </style>

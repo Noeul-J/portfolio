@@ -232,14 +232,18 @@ const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .about {
-    padding: 80px 0;
-    min-height: 50vh;
+    padding: 60px 0;
   }
   
   .container {
-    padding: 0 16px;
+    padding: 0 20px;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.8;
   }
   
   .hero-stats {
@@ -252,18 +256,116 @@ const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}
   }
   
   .stat-number {
-    font-size: 2rem;
+    font-size: 1.75rem;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
   }
   
   .contact-card {
     padding: 24px;
   }
+  
+  .contact-card h2 {
+    font-size: 1.5rem;
+  }
+  
+  .contact-card p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 40px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .stat-card {
+    padding: 12px;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+  }
+  
+  .contact-card {
+    padding: 20px;
+  }
+  
+  .contact-card h2 {
+    font-size: 1.25rem;
+  }
+  
+  .contact-card p {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .about {
+    padding: 30px 0;
+  }
+  
+  .container {
+    padding: 0 12px;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
   .hero-stats {
-    grid-template-columns: 1fr;
-    max-width: 200px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  
+  .stat-card {
+    padding: 8px;
+  }
+  
+  .stat-number {
+    font-size: 1.25rem;
+  }
+  
+  .stat-label {
+    font-size: 0.7rem;
+  }
+  
+  .contact-card {
+    padding: 16px;
+  }
+  
+  .contact-card h2 {
+    font-size: 1.125rem;
+  }
+  
+  .contact-card p {
+    font-size: 0.9rem;
+  }
+  
+  .contact-btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
   }
 }
 </style>
