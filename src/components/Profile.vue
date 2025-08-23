@@ -5,12 +5,16 @@ import CV from '../assets/CV_hjjung.pdf'
 const { t } = useI18n()
 
 const downloadCV = () => {
-  const link = document.createElement('a')
-  link.href = CV
-  link.download = 'CV_hjjung.pdf'
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
+  try {
+    const link = document.createElement('a')
+    link.href = CV
+    link.download = 'CV_hjjung.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  } catch (error) {
+    alert('Download failed')
+  }
 }
 </script>
 
