@@ -113,9 +113,10 @@ const { t } = useI18n()
 <style scoped>
 .experience {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+  background-attachment: fixed;
   color: #1e293b;
   position: relative;
-  padding: 20px 0;
+  padding: 40px 0 170px 0;
 }
 
 .experience::before {
@@ -374,11 +375,17 @@ const { t } = useI18n()
   }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1440px) {
   .experience {
     padding: 15px 0 80px 0;
-    min-height: auto;
+    min-height: 110vh;
+  }
+}
+
+@media (max-width: 1024px) {
+  .experience {
+    padding: 15px 0 100px 0;
+    min-height: 110vh;
   }
   
   .container {

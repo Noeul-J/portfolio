@@ -144,9 +144,16 @@ const filtered = computed(() => {
 <style scoped>
 .projects {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+  background-attachment: fixed;
   color: #1e293b;
   position: relative;
-  padding: 110px 0;
+  padding: 100px 0 300px 0;
+}
+
+@media (max-width: 1440px) and (min-width: 1440px) {
+  .projects {
+    padding: 400px 0;
+  }
 }
 
 .container {
