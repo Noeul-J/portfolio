@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import CV from '../assets/CV.pdf'
+import CV from '../assets/CV_hjjung.pdf'
 
 const { t } = useI18n()
 
