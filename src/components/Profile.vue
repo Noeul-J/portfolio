@@ -282,17 +282,6 @@ const downloadCV = () => {
   transform-origin: center center;
 }
 
-/* @media (min-width: 1200px) {
-  .profile-card {
-    transform: scale(1.25);
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1199px) {
-  .profile-card {
-    transform: scale(1.1);
-  }
-}
 
 @media (max-width: 767px) {
   .profile {
@@ -318,6 +307,6 @@ const downloadCV = () => {
   .profile-card {
     transform: scale(0.8);
   }
-} */
+} 
 </style>
 

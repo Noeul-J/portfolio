@@ -84,7 +84,7 @@ const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}
 
 /* Hero Section */
 .hero-section {
-  text-align: center;
+  text-align: left;
   margin-bottom: 32px;
   animation: fadeInUp 1s ease-out;
 }
