@@ -116,7 +116,7 @@ const { t } = useI18n()
   background-attachment: fixed;
   color: #1e293b;
   position: relative;
-  padding: 40px 0 170px 0;
+  padding: 80px 0 210px 0;
 }
 
 .experience::before {
