@@ -30,7 +30,7 @@ const downloadCV = () => {
             </div>
             <div class="profile-info">
               <h1 class="profile-name">{{ t('hjjung') }}</h1>
-              <p class="profile-title">Full Stack Developer</p>
+              <p class="profile-title">Software Developer</p>
             </div>
           </div>
 
@@ -41,7 +41,7 @@ const downloadCV = () => {
             </div>
             <div class="contact-item">
               <div class="contact-icon">📱</div>
-              <div class="contact-text">+82 10-4529-2146</div>
+              <div class="contact-text">+44 7774 699838</div>
             </div>
             <div class="contact-item">
               <div class="contact-icon">🔗</div>

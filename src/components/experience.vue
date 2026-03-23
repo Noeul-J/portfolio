@@ -85,7 +85,7 @@ const { t } = useI18n()
                 <div class="timeline-period">2025.01 ~</div>
                 <div class="timeline-company">
                   <span class="company-name">EDENTNS</span>
-                  <span class="position">Full-Stack Developer</span>
+                  <span class="position">Software Developer</span>
                 </div>
               </div>
               <div class="timeline-description">

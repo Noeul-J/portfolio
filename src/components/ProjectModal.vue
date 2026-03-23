@@ -67,14 +67,14 @@ const currentProject = computed(() => {
           <p class="modal-overview">{{ currentProject.overview }}</p>
 
           <section class="modal-section">
-            <h4 class="section-title">주요 기능 / 활동</h4>
+            <h4 class="section-title">{{ t('project_overview') }}</h4>
             <ul class="feature-list">
               <li v-for="(f,i) in currentProject.features" :key="i">{{ f }}</li>
             </ul>
           </section>
 
           <section class="modal-section">
-            <h4 class="section-title">성과</h4>
+            <h4 class="section-title">{{ t('project_outcome') }}</h4>
             <ul class="outcome-list">
               <li v-for="(o,i) in currentProject.outcomes" :key="i">{{ o }}</li>
             </ul>

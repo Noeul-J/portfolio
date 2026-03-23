@@ -132,7 +132,8 @@ const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}
 
 .stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 16px 20px -5px rgba(0, 0, 0, 0.1), 0 
+  px 8px -5px rgba(0, 0, 0, 0.04);
   border-color: #3b82f6;
 }
 
@@ -232,7 +233,7 @@ const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+ @media (max-width: 1024px) {
   .about {
     padding: 60px 0;
   }
@@ -343,7 +344,7 @@ const mailto = computed(()=>`mailto:ggumihj@gmail.com?subject=${mailTitle.value}
     padding: 8px;
   }
   
-  .stat-number {
+  .stat-numbe* {
     font-size: 1.25rem;
   }
   
